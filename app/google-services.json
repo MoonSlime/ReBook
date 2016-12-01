@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "959312771858",
+    "firebase_url": "https://rebook-fe1b8.firebaseio.com",
+    "project_id": "rebook-fe1b8",
+    "storage_bucket": "rebook-fe1b8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:959312771858:android:ce09756ee1d0c6f4",
+        "android_client_info": {
+          "package_name": "com.cksrb.rebook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "959312771858-12qvfq29pgfru28jjdrkpubdnpcsdot6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cksrb.rebook",
+            "certificate_hash": "7870F1BAE22B8B077C1DC3285B9FE8F6E2AE0E10"
+          }
+        },
+        {
+          "client_id": "959312771858-qvbu51r0dqbuufavme1ho8e6443te6h1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6HlthAzyOpNXnNjMrzmEbLtRjE0heqR0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "959312771858-qvbu51r0dqbuufavme1ho8e6443te6h1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
