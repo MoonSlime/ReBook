@@ -1,28 +1,66 @@
 package com.cksrb.rebook;
 
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+
 import android.content.DialogInterface;
 import android.content.Intent;
+
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
 
 public class MainActivity extends AppCompatActivity {
+    private SectionsPagerAdapter mSectionsPagerAdapter;
+
+    private ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+
+        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
     }
 
     public void onClick1(View view){
@@ -57,26 +95,43 @@ public class MainActivity extends AppCompatActivity {
                 }).show();
     }
 
-    public void test() throws IOException {
-        //java코드로 특정 url에 요청보내고 응답받기
-        //기본 자바 API를 활용한 방법
+    //Duggy
+    public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-        String clientID="H6Vntz4GAyzdZlEZLgHq"; //네이버 개발자 센터에서 발급받은 clientID입력
-        String clientSecret = "3ghV0ENhbJ";        //네이버 개발자 센터에서 발급받은 clientSecret입력
-        URL url = new URL("https://openapi.naver.com/v1/search/book.xml?query=java"); //API 기본정보의 요청 url을 복사해오고 필수인 query를 적어줍니당!
+        public SectionsPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
 
-        URLConnection urlConn=url.openConnection(); //openConnection 해당 요청에 대해서 쓸 수 있는 connection 객체
+        @Override
+        public Fragment getItem(int position) {
+            if(position == 0)
+                return new UniFragment();
+            else if(position == 1)
+                return new NormalFragment();
+            else if(position == 2)
+                return new DealFragment();
+            else
+                return new WishFragment();
+        }
 
-        urlConn.setRequestProperty("X-Naver-Client-ID", clientID);
-        urlConn.setRequestProperty("X-Naver-Client-Secret", clientSecret);
+        @Override
+        public int getCount() {
+            return 4;
+        }
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
-
-        String msg = null;
-        while((msg = br.readLine())!=null)
-        {
-            Log.d("msg",msg);
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0:
+                    return "대학서적";
+                case 1:
+                    return "일반서적";
+                case 2:
+                    return "거래현황";
+                case 3:
+                    return "장바구니";
+            }
+            return null;
         }
     }
-
 }
