@@ -47,10 +47,7 @@ public class ChatActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(cAdapter);
 
-        //
-
   //      prepareData();
-        //
 
         editText = (EditText)findViewById(R.id.editText);
         button_Push = (Button)findViewById(R.id.button_Push);
@@ -68,8 +65,12 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 ChatData chatData = dataSnapshot.getValue(ChatData.class);  // chatData를 가져오고
+                if(cAdapter.getItemCount()==30){
+                    chatDataList.remove(0);
+                }
                 chatDataList.add(chatData);
                 cAdapter.notifyDataSetChanged();
+
                 //TextView textView = (TextView)findViewById(R.id.textView);
                 //textView.setText(chatData.getUserId()+"send this\n=>"+chatData.getMessage());  // adapter에 추가합니다.
             }
