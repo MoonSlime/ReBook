@@ -2,17 +2,18 @@ package com.cksrb.rebook;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.cksrb.rebook.DataForm.ChatData;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -22,11 +23,31 @@ public class ChatActivity extends AppCompatActivity {
     EditText editText;
     Button button_Push;
 
+    //
+    private List<ChatData> chatDataList = new ArrayList<>();
+    private RecyclerView recyclerView;
+    private ChatAdapter cAdapter;
+    //
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat);
+       // setContentView(R.layout.activity_chat);
+        setContentView(R.layout.chat_main);
+        //
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
+        cAdapter = new ChatAdapter(chatDataList);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(cAdapter);
+
+        //
+
+        prepareData();
+        //
+/*
         editText = (EditText)findViewById(R.id.editText);
         button_Push = (Button)findViewById(R.id.button_Push);
 
@@ -44,7 +65,7 @@ public class ChatActivity extends AppCompatActivity {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 ChatData chatData = dataSnapshot.getValue(ChatData.class);  // chatData를 가져오고
                 TextView textView = (TextView)findViewById(R.id.textView);
-                textView.setText(chatData.getUserName()+"send this\n=>"+chatData.getMessage());  // adapter에 추가합니다.
+                textView.setText(chatData.getUserId()+"send this\n=>"+chatData.getMessage());  // adapter에 추가합니다.
             }
 
             @Override
@@ -59,5 +80,26 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onCancelled(DatabaseError databaseError) { }
         });
+        */
     }
+
+    private void prepareData(){
+        ChatData chatData = new ChatData("1","1");
+        chatDataList.add(chatData);
+
+        chatData = new ChatData("2","2");
+        chatDataList.add(chatData);
+
+        chatData = new ChatData("3","3");
+        chatDataList.add(chatData);
+
+        chatData = new ChatData("4","4");
+        chatDataList.add(chatData);
+
+        chatData = new ChatData("5","5");
+        chatDataList.add(chatData);
+
+        cAdapter.notifyDataSetChanged();
+    }
+
 }

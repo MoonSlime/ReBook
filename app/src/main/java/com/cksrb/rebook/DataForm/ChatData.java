@@ -5,22 +5,22 @@ package com.cksrb.rebook.DataForm;
  */
 
 public class ChatData {
-    private String userName;
+    private String userId;
     private String message;
 
     public ChatData() { }
 
-    public ChatData(String userName, String message) {
-        this.userName = userName;
+    public ChatData(String userId, String message) {
+        this.userId = userId;
         this.message = message;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getMessage() {
