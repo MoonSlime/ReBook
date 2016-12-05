@@ -23,6 +23,8 @@ public class ChatActivity extends AppCompatActivity {
 
     private ReBookApplication app;
 
+    private String othersId=null;
+
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
@@ -38,8 +40,11 @@ public class ChatActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // setContentView(R.layout.activity_chat);
+        // setContentView(R.layout.activity_chat);
         setContentView(R.layout.chat_main);
+
+        //othersId 읽어오기
+
         app=(ReBookApplication)getApplication();
          //
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -59,12 +64,12 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ChatData chatData = new ChatData(app.getUserId(), editText.getText().toString());  // 유저 이름과 메세지로 chatData 만들기
-                databaseReference.child("chat").child(app.getUserId()+"|"+"B").push().setValue(chatData);  // 기본 database 하위 message라는 child에 chatData를 list로 만들기
+                databaseReference.child("chat").child(app.getUserId()+"|"+othersId).push().setValue(chatData);  // 기본 database 하위 message라는 child에 chatData를 list로 만들기
                 editText.setText("");
             }
         });
 
-        databaseReference.child("chat").addChildEventListener(new ChildEventListener() {  // message는 child의 이벤트를 수신합니다.
+        databaseReference.child("chat").child(app.getUserId()+"|"+othersId).addChildEventListener(new ChildEventListener() {  // message는 child의 이벤트를 수신합니다.
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 ChatData chatData = dataSnapshot.getValue(ChatData.class);  // chatData를 가져오고

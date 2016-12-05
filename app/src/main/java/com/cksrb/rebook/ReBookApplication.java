@@ -15,7 +15,7 @@ public class ReBookApplication extends Application {
     }
 
     ReBookApplication(){
-        userId="No_Id";
+        userId="A";
     }
 
     public void setUserId(String userId){
