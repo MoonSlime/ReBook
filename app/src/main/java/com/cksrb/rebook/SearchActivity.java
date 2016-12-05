@@ -3,16 +3,16 @@ package com.cksrb.rebook;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLEncoder;
 
 public class SearchActivity extends AppCompatActivity {
     private MyAsyncTask myAsyncTask;
@@ -35,6 +35,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     public class MyAsyncTask extends AsyncTask<String,Void,String> {
+        Gson gson;
 
         @Override
         protected void onPreExecute() {
@@ -48,8 +49,11 @@ public class SearchActivity extends AppCompatActivity {
             String clientId = "H6Vntz4GAyzdZlEZLgHq";//애플리케이션 클라이언트 아이디값";
             String clientSecret = "3ghV0ENhbJ";//애플리케이션 클라이언트 시크릿값";
             try {
-                String text = URLEncoder.encode("그린팩토리", "UTF-8");
-                String apiURL = "https://openapi.naver.com/v1/search/blog?query="+ text; // json 결과
+               // String text = URLEncoder.encode("java", "UTF-8");
+                String ISBN = "9788998756680";
+                String apiURL = "https://openapi.naver.com/v1/search/book_adv?d_isbn="+ISBN;
+                //String apiURL = "https://openapi.naver.com/v1/search/book_adv?query="+ text+"&d_titl=java";//도서 검색
+                //String apiURL = "https://openapi.naver.com/v1/search/blog?query="+ text; // json 결과
                 //String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text; // xml 결과
                 URL url = new URL(apiURL);
                 HttpURLConnection con = (HttpURLConnection)url.openConnection();
@@ -74,24 +78,23 @@ public class SearchActivity extends AppCompatActivity {
                 str=""+e;
             }
 
-
-
-
-
-
             return str;
         }
 
         @Override
         protected void onPostExecute(String result) {
-            Log.d("debug",result);
+            gson = new Gson();
+            //BookData bookData = gson.fromJson(result,BookData.class);
+
+            /*JsonParser jsonParser = new JsonParser();
+            JsonObject jsonObject = (JsonObject)jsonParser.parse(result);
+            JsonArray item =(JsonArray)jsonObject.get("item");
+
+            textView.setText(item.getAsString());
+*/
             textView.setText(result);
+
             //super.onPostExecute(result);
-
-            if(result != null){
-                Log.d("ASYNC", "result = " + result);
-            }
-
         }
 
         @Override
