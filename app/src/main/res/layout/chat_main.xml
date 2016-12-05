@@ -10,12 +10,35 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.cksrb.rebook.ChatActivity"
+    tools:showIn="@layout/activity_chat"
     >
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical" />
+        android:scrollbars="vertical"
+        android:layout_above="@+id/linearLayout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/linearLayout">
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#BBB"/>
+
+        <Button
+            android:id="@+id/button_Push"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="PUSH"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

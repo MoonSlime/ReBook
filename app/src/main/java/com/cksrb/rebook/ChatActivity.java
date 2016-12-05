@@ -99,6 +99,30 @@ public class ChatActivity extends AppCompatActivity {
         chatData = new ChatData("5","5");
         chatDataList.add(chatData);
 
+        chatData = new ChatData("5","5");
+        chatDataList.add(chatData);
+
+        chatData = new ChatData("5","5");
+        chatDataList.add(chatData);
+
+        chatData = new ChatData("5","5");
+        chatDataList.add(chatData);
+
+        chatData = new ChatData("5","5");
+        chatDataList.add(chatData);
+
+        chatData = new ChatData("5","5");
+        chatDataList.add(chatData);
+
+        chatData = new ChatData("5","5");
+        chatDataList.add(chatData);
+
+        chatData = new ChatData("5","5");
+        chatDataList.add(chatData);
+
+        chatData = new ChatData("5","5");
+        chatDataList.add(chatData);
+
         cAdapter.notifyDataSetChanged();
     }
 
