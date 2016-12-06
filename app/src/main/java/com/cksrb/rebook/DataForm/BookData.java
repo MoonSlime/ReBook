@@ -14,7 +14,18 @@ public class BookData {
     private String publisher;
     private String description;
 
+    private String customerId;
+    private String sellerId;
+
     public BookData(){
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public void setSellerId(String sellerId) {
+        this.sellerId = sellerId;
     }
 
     public void setIsbn(String isbn) {
@@ -47,6 +58,14 @@ public class BookData {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public String getSellerId() {
+        return sellerId;
     }
 
     public String getIsbn() {
