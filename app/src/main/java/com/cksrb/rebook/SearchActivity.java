@@ -8,6 +8,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonPrimitive;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -84,14 +88,20 @@ public class SearchActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             gson = new Gson();
-            //BookData bookData = gson.fromJson(result,BookData.class);
 
-            /*JsonParser jsonParser = new JsonParser();
-            JsonObject jsonObject = (JsonObject)jsonParser.parse(result);
-            JsonArray item =(JsonArray)jsonObject.get("item");
+            JsonObject jsonObject = new JsonParser().parse(result).getAsJsonObject();
+            JsonArray jsonArray = jsonObject.getAsJsonArray("items");
 
-            textView.setText(item.getAsString());
-*/
+            JsonObject jsonObject_item = jsonArray.get(0).getAsJsonObject();
+
+            JsonPrimitive jsonPrimitive = jsonObject_item.getAsJsonPrimitive("title");
+            String title = jsonPrimitive.getAsString();
+
+            jsonPrimitive = jsonObject_item.getAsJsonPrimitive("link");
+            String link = jsonPrimitive.getAsString();
+
+            //textView.setText("Title = "+title +"\nlink = "+link);
+
             textView.setText(result);
 
             //super.onPostExecute(result);
