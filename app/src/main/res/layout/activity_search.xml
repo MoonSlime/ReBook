@@ -18,7 +18,8 @@
         android:id="@+id/button_Search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Search"/>
+        android:text="Search"
+        android:onClick="onClick"/>
 
     <TextView
         android:id="@+id/textView_Search"

@@ -1,0 +1,88 @@
+package com.cksrb.rebook.DataForm;
+
+/**
+ * Created by cksrb on 2016. 12. 6..
+ */
+
+public class BookData {
+    private String isbn;
+    private String title;
+    private String link;
+    private String image_url;
+    private String author;
+    private int price;
+    private String publisher;
+    private String description;
+
+    public BookData(){
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public String getImage_url() {
+        return image_url;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    @Override
+    public String toString(){
+        return isbn+"\n"+title+"\n"+link+"\n"+getImage_url()+"\n"+author+"\n"+price+"\n"+publisher+"\n"+description;
+    }
+}
