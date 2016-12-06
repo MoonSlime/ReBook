@@ -22,7 +22,7 @@ import com.google.zxing.integration.android.IntentResult;
 
 
 public class MainActivity extends AppCompatActivity {
-    private SectionsPagerAdapter mSectionsPagerAdapter;
+     private SectionsPagerAdapter mSectionsPagerAdapter;
 
     private ViewPager mViewPager;
 
@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -68,10 +69,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void onClick3(View view){
-        Intent intent = new Intent(this,SearchActivity.class);
-        startActivity(intent);
-    }
 
     protected void onActivityResult(int requestCode,int resultCode,Intent data) {
         //QR코드/바코드를 스캔한 결과 값을 가져옴
@@ -128,4 +125,5 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
     }
+
 }

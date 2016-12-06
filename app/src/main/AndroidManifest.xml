@@ -18,7 +18,6 @@
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".MainActivity" />
         <activity android:name=".ChatActivity" />
-        <activity android:name=".SearchActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,7 +25,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterBookActivity" />
+        <activity android:name=".RegisterBookActivity" >
+
+        </activity>
         <activity android:name=".SignUpActivity"></activity>
     </application>
 
