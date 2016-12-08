@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.cksrb.rebook.DataForm.BookData;
 import com.google.gson.JsonArray;
@@ -28,12 +29,17 @@ public class RegisterBookActivity extends AppCompatActivity {
 
     private Button button;
 
+    private TextView textView_title;
+    private TextView textView_publisher;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_book);
 
         app = (ReBookApplication)getApplication();
+
+        book = new BookData();
 
         button = (Button)findViewById(R.id.button_scan);
         button.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +49,8 @@ public class RegisterBookActivity extends AppCompatActivity {
             }
         });
 
-        book = new BookData();
+        textView_title=(TextView)findViewById(R.id.textView_title);
+        textView_publisher=(TextView)findViewById(R.id.textView_publisher);
     }
 
     protected void isbnScan(){
@@ -125,6 +132,7 @@ public class RegisterBookActivity extends AppCompatActivity {
 
             JsonPrimitive jsonPrimitive = jsonObject_item.getAsJsonPrimitive("title");
             book.setTitle(jsonPrimitive.getAsString());
+            textView_title.setText(book.getTitle());
 
             jsonPrimitive = jsonObject_item.getAsJsonPrimitive("link");
             book.setLink(jsonPrimitive.getAsString());
@@ -140,6 +148,7 @@ public class RegisterBookActivity extends AppCompatActivity {
 
             jsonPrimitive = jsonObject_item.getAsJsonPrimitive("publisher");
             book.setPublisher(jsonPrimitive.getAsString());
+            textView_publisher.setText(book.getPublisher());
 
             jsonPrimitive = jsonObject_item.getAsJsonPrimitive("description");
             book.setDescription(jsonPrimitive.getAsString());

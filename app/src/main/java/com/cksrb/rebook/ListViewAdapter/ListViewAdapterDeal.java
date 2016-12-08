@@ -9,11 +9,10 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.cksrb.rebook.ChatActivity;
 import com.cksrb.rebook.ListViewItem;
 import com.cksrb.rebook.R;
+import com.cksrb.rebook.RegisterBookActivity;
 
 import java.util.ArrayList;
 
@@ -69,7 +68,8 @@ public class ListViewAdapterDeal extends BaseAdapter{
         btn.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, ChatActivity.class);
+                //Intent intent = new Intent(mContext, ChatActivity.class);
+                Intent intent = new Intent(mContext, RegisterBookActivity.class);
                 mContext.startActivity(intent);
             }
         });
