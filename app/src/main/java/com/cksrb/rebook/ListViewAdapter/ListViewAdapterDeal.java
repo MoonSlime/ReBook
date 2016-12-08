@@ -1,13 +1,17 @@
 package com.cksrb.rebook.ListViewAdapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.cksrb.rebook.ChatActivity;
 import com.cksrb.rebook.ListViewItem;
 import com.cksrb.rebook.R;
 
@@ -55,11 +59,20 @@ public class ListViewAdapterDeal extends BaseAdapter{
         if(view == null){
             view = ((LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE))
                     .inflate(R.layout.listview_item_deal, null);
-
-            bookCoverIcon = (ImageView) view.findViewById(R.id.dealImageView);
-            bookNameStr = (TextView) view.findViewById(R.id.dealBookNameTextView);
-            sellerStr = (TextView) view.findViewById(R.id.dealSellerTextView);
         }
+
+        bookCoverIcon = (ImageView) view.findViewById(R.id.dealImageView);
+        bookNameStr = (TextView) view.findViewById(R.id.dealBookNameTextView);
+        sellerStr = (TextView) view.findViewById(R.id.dealSellerTextView);
+
+        Button btn = (Button) view.findViewById(R.id.dealBuyBtn);
+        btn.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, ChatActivity.class);
+                mContext.startActivity(intent);
+            }
+        });
 
         mListview = (ListViewItem) getItem(position);
 

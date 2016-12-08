@@ -67,7 +67,8 @@
             android:text="채팅하기"
             android:background="#faa"
             android:id="@+id/dealBuyBtn"
-            android:textColor="#333"></Button>
+            android:textColor="#333"
+            android:focusable="false"></Button>
     </LinearLayout>
 
 </LinearLayout>

@@ -20,7 +20,8 @@
             android:windowSoftInputMode="stateHidden|adjustPan">
         </activity>
         <activity android:name=".ChatActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

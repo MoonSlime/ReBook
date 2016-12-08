@@ -7,11 +7,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.cksrb.rebook.DataForm.BookData;
 import com.cksrb.rebook.ListViewAdapter.ListViewAdapter;
 import com.cksrb.rebook.ListViewItem;
 import com.cksrb.rebook.R;
+
+import java.net.MalformedURLException;
 
 public class UniFragment extends Fragment {
 
@@ -28,8 +33,21 @@ public class UniFragment extends Fragment {
         booklist.setAdapter(adapter);
 
         for(int i = 1; i < 10; i++) {
-            addData(); // add Data
+            try {
+                addData(); // add Data
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
         }
+
+        AdapterView.OnItemClickListener listViewClickListener = new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getActivity(), "abc"+position, Toast.LENGTH_SHORT).show();
+            }
+        }; // when click list, open new activity(book info)
+
+        booklist.setOnItemClickListener(listViewClickListener);
 
         adapter.notifyDataSetChanged();
 
@@ -45,10 +63,10 @@ public class UniFragment extends Fragment {
         return view;
     }
 
-    public void addData(){
-        ListViewItem u1 = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_camera),
-                "해리포터", "롤링");
+    public void addData() throws MalformedURLException {
+        BookData bookData = new BookData();
+
+        ListViewItem  u1 = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_gallery), "나는대학서적", "나는교수");
         adapter.addData(u1); // add list data
     }
-
 }

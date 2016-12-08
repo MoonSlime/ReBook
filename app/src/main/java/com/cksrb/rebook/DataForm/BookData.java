@@ -18,6 +18,8 @@ public class BookData {
     private String sellerId;
     private int sellPrice;
 
+    private int type;
+
     public BookData(){
         customerId=null;
         sellerId=null;

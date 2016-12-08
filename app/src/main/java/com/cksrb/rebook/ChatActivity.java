@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChatActivity extends AppCompatActivity {
-    int cnt=0;
 
     private ReBookApplication app;
 
@@ -75,7 +74,6 @@ public class ChatActivity extends AppCompatActivity {
                 if(cAdapter.getItemCount()==30){
                     chatDataList.remove(0);
                 }
-                chatData.setMessage(chatData.getMessage()+cnt++);
                 chatDataList.add(chatData);
                 cAdapter.notifyDataSetChanged();
 
