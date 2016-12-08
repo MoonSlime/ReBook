@@ -18,8 +18,12 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class UniFragment extends Fragment {
+<<<<<<< HEAD
     private ListView booklist;
     private ListViewAdapter adapter;
+=======
+    private ReBookApplication app;
+>>>>>>> 39458af459cdc4d2f946a96da2dc4d5ab0f01194
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,4 +57,5 @@ public class UniFragment extends Fragment {
                 "해리포터", "롤링");
         adapter.addData(u1); // add list data
     }
+
 }
