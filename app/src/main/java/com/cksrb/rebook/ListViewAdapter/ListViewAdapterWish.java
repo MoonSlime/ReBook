@@ -1,4 +1,4 @@
-package com.cksrb.rebook;
+package com.cksrb.rebook.ListViewAdapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,13 +8,16 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.cksrb.rebook.ListViewItem;
+import com.cksrb.rebook.R;
+
 import java.util.ArrayList;
 
 /**
  * Created by Duck on 2016-12-08.
  */
 
-public class ListViewAdapterDeal extends BaseAdapter{
+public class ListViewAdapterWish extends BaseAdapter {
     private ListViewItem mListview;
     private Context mContext;
 
@@ -24,7 +27,7 @@ public class ListViewAdapterDeal extends BaseAdapter{
 
     private ArrayList<ListViewItem> mList;
 
-    public ListViewAdapterDeal(Context context){
+    public ListViewAdapterWish(Context context){
         super();
         mContext=context;
         mList = new ArrayList<ListViewItem>();
@@ -51,11 +54,11 @@ public class ListViewAdapterDeal extends BaseAdapter{
 
         if(view == null){
             view = ((LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE))
-                    .inflate(R.layout.listview_item_deal, null);
+                    .inflate(R.layout.listview_item_wish, null);
 
-            bookCoverIcon = (ImageView) view.findViewById(R.id.dealImageView);
-            bookNameStr = (TextView) view.findViewById(R.id.dealBookNameTextView);
-            sellerStr = (TextView) view.findViewById(R.id.dealSellerTextView);
+            bookCoverIcon = (ImageView) view.findViewById(R.id.wishImageView);
+            bookNameStr = (TextView) view.findViewById(R.id.wishBookNameTextView);
+            sellerStr = (TextView) view.findViewById(R.id.wishSellerTextView);
         }
 
         mListview = (ListViewItem) getItem(position);
