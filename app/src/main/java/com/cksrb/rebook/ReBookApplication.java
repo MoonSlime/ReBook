@@ -19,6 +19,7 @@ import java.util.List;
  */
 
 public class ReBookApplication extends Application {
+    public int cnt=0;
     public FirebaseDatabase firebaseDatabase ;//= FirebaseDatabase.getInstance();
     public DatabaseReference databaseReference ;//= firebaseDatabase.getReference();
 
