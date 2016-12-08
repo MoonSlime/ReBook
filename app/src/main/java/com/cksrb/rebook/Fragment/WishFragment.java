@@ -1,15 +1,15 @@
-package com.cksrb.rebook;
+package com.cksrb.rebook.Fragment;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+
+import com.cksrb.rebook.ListViewAdapter.ListViewAdapterWish;
+import com.cksrb.rebook.ListViewItem;
+import com.cksrb.rebook.R;
 
 public class WishFragment extends Fragment{
         private ListView booklist;

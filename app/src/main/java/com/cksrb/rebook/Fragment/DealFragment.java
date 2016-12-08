@@ -1,15 +1,15 @@
-package com.cksrb.rebook;
+package com.cksrb.rebook.Fragment;
 
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.Toast;
+
+import com.cksrb.rebook.ListViewAdapter.ListViewAdapterDeal;
+import com.cksrb.rebook.ListViewItem;
+import com.cksrb.rebook.R;
 
 public class DealFragment extends Fragment{
         private ListView booklist;

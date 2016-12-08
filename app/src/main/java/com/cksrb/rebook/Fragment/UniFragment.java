@@ -1,7 +1,5 @@
-package com.cksrb.rebook;
+package com.cksrb.rebook.Fragment;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,17 +9,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-public class NormalFragment extends Fragment {
+import com.cksrb.rebook.ListViewAdapter.ListViewAdapter;
+import com.cksrb.rebook.ListViewItem;
+import com.cksrb.rebook.R;
+
+public class UniFragment extends Fragment {
+
     private ListView booklist;
     private ListViewAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_normal, null);
+        View view = inflater.inflate(R.layout.fragment_uni, null);
 
         adapter = new ListViewAdapter(getContext());
-        booklist = (ListView) view.findViewById(R.id.normalList);
+        booklist = (ListView) view.findViewById(R.id.uniList);
         booklist.setAdapter(adapter);
 
         for(int i = 1; i < 10; i++) {
@@ -30,11 +33,11 @@ public class NormalFragment extends Fragment {
 
         adapter.notifyDataSetChanged();
 
-        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fabNormal);
+        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fabUni);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "this is normal book", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "this is uni book", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         }); // Floating Action Button >> when click this, open buy_activity
@@ -43,8 +46,9 @@ public class NormalFragment extends Fragment {
     }
 
     public void addData(){
-        ListViewItem u1 = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_gallery),
-                "나는책이름", "나는작가");
+        ListViewItem u1 = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_camera),
+                "해리포터", "롤링");
         adapter.addData(u1); // add list data
     }
+
 }

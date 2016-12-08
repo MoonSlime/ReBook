@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.cksrb.rebook.WishFragment"
+    tools:context="com.cksrb.rebook.Fragment.WishFragment"
     android:background="#f77">
 
     <ListView

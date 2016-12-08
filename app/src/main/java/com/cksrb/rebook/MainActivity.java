@@ -16,6 +16,10 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.cksrb.rebook.Fragment.DealFragment;
+import com.cksrb.rebook.Fragment.NormalFragment;
+import com.cksrb.rebook.Fragment.UniFragment;
+import com.cksrb.rebook.Fragment.WishFragment;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
