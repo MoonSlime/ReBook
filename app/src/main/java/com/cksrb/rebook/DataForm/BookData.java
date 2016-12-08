@@ -16,8 +16,15 @@ public class BookData {
 
     private String customerId;
     private String sellerId;
+    private int sellPrice;
 
     public BookData(){
+        customerId=null;
+        sellerId=null;
+    }
+
+    public void setSellPrice(int sellPrice) {
+        this.sellPrice = sellPrice;
     }
 
     public void setCustomerId(String customerId) {
@@ -100,8 +107,8 @@ public class BookData {
         return description;
     }
 
-    @Override
-    public String toString(){
-        return isbn+"\n"+title+"\n"+link+"\n"+getImage_url()+"\n"+author+"\n"+price+"\n"+publisher+"\n"+description;
+    public int getSellPrice() {
+        return sellPrice;
     }
+
 }

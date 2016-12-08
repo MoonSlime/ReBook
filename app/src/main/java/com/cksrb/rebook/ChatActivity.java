@@ -13,20 +13,19 @@ import com.cksrb.rebook.DataForm.ChatData;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ChatActivity extends AppCompatActivity {
+    int cnt=0;
 
     private ReBookApplication app;
 
     private String othersId=null;
 
-    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    private DatabaseReference databaseReference = firebaseDatabase.getReference();
+    //private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    //private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
     EditText editText;
     Button button_Push;
@@ -64,18 +63,19 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ChatData chatData = new ChatData(app.getUserId(), editText.getText().toString());  // 유저 이름과 메세지로 chatData 만들기
-                databaseReference.child("chat").child(app.getUserId()+"|"+othersId).push().setValue(chatData);  // 기본 database 하위 message라는 child에 chatData를 list로 만들기
+                app.databaseReference.child("chat").child(app.getUserId()+"|"+othersId).push().setValue(chatData);  // 기본 database 하위 message라는 child에 chatData를 list로 만들기
                 editText.setText("");
             }
         });
 
-        databaseReference.child("chat").child(app.getUserId()+"|"+othersId).addChildEventListener(new ChildEventListener() {  // message는 child의 이벤트를 수신합니다.
+        app.databaseReference.child("chat").child(app.getUserId()+"|"+othersId).addChildEventListener(new ChildEventListener() {  // message는 child의 이벤트를 수신합니다.
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 ChatData chatData = dataSnapshot.getValue(ChatData.class);  // chatData를 가져오고
                 if(cAdapter.getItemCount()==30){
                     chatDataList.remove(0);
                 }
+                chatData.setMessage(chatData.getMessage()+cnt++);
                 chatDataList.add(chatData);
                 cAdapter.notifyDataSetChanged();
 
