@@ -57,75 +57,6 @@ public class LoginActivity extends AppCompatActivity {
              }
         });
 
-        /*
-        app.databaseReference.child("UserList").addChildEventListener(new ChildEventListener() {  // message는 child의 이벤트를 수신합니다.
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                app.getUserList().add(dataSnapshot.getValue(USER.class));
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-                USER user = dataSnapshot.getValue(USER.class);
-                List<USER> userList = app.getUserList();
-
-                int i=userList.size();
-                for(;i>0;--i){
-                    if(userList.get(i-1).equals(user))userList.remove(i-1);
-                    break;
-                }
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });*/
-/*
-        app.databaseReference.child("BookList").addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                app.getBookList().add(dataSnapshot.getValue(BookData.class));
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-                BookData book = dataSnapshot.getValue(BookData.class);
-                List<BookData> bookList=app.getBookList();
-
-                int i=bookList.size();
-                for(;i>0;--i){
-                    if(bookList.get(i-1).getIsbn().equals(book.getIsbn())
-                            &&bookList.get(i-1).getSellerId().equals(book.getSellerId())){
-                        bookList.remove(i-1);
-                        break;
-                    }
-                }
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-*/
     }
 
     public boolean attemptLogin(String id, String password) {
@@ -133,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
         int i = userList.size();
         for (; i > 0; --i) {
             if (userList.get(i-1).equals(new USER(id, password))) {
-                app.setUserId(userList.get(i-1).id);
+                app.setUserId(userList.get(i-1).getId());
                 return true;
             }
         }

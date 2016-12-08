@@ -1,6 +1,7 @@
 package com.cksrb.rebook;
 
 import android.app.Application;
+import android.widget.Toast;
 
 import com.cksrb.rebook.DataForm.BookData;
 import com.cksrb.rebook.DataForm.USER;
@@ -61,6 +62,14 @@ public class ReBookApplication extends Application {
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                USER user = dataSnapshot.getValue(USER.class);
+                int i=userList.size();
+
+                for(;i>0;--i){
+                    if(userList.get(i-1).getId().equals(user.getId())){
+                        userList.set(i-1,user);
+                    }
+                }
             }
 
             @Override
@@ -119,6 +128,10 @@ public class ReBookApplication extends Application {
             }
         });
 
+    }
+
+    public void debug(String str) {
+        Toast.makeText(getApplicationContext(),str, Toast.LENGTH_SHORT);
     }
 
 }

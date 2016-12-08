@@ -5,10 +5,10 @@ package com.cksrb.rebook.DataForm;
  */
 
 public class USER {
-    public String id;
-    public String password;
-    public String name;
-    public String phone;
+    private String id;
+    private String password;
+    private String name;
+    private String phone;
 
     public USER() {
 
@@ -25,6 +25,22 @@ public class USER {
         this.password = password;
         this.name=name;
         this.phone=phone;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPhone() {
+        return phone;
     }
 
     public boolean equals(USER user) {

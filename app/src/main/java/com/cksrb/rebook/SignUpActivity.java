@@ -49,11 +49,11 @@ public class SignUpActivity extends AppCompatActivity {
 
                 int i = userList.size();
                 for (; i > 0; --i) {
-                    if (userList.get(i-1).id.equals(user.id))signup=false;
+                    if (userList.get(i-1).getId().equals(user.getId()))signup=false;
                 }
 
                 if(signup){
-                    app.databaseReference.child("UserList").push().setValue(user);
+                    app.databaseReference.child("UserList").child(user.getId()).setValue(user);
                     Toast.makeText(getApplicationContext(),"회원으로 등록되었습니다.",Toast.LENGTH_SHORT).show();
                     finish();
                 }

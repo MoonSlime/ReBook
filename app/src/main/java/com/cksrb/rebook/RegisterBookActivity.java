@@ -156,7 +156,7 @@ public class RegisterBookActivity extends AppCompatActivity {
                 }
             }
 
-            if(check)app.databaseReference.child("BookList").push().setValue(book);
+            if(check)app.databaseReference.child("BookList").child(app.getUserId()+"|"+book.getIsbn()).setValue(book);
         }
 
         @Override
