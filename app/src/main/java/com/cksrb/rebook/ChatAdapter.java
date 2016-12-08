@@ -43,7 +43,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder>{
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         ChatData chatData = chatDataList.get(position);
-        holder.userId.setText(chatData.getUserId());
+        holder.userId.setText(chatData.getFrom());
         holder.message.setText(chatData.getMessage());
     }
 

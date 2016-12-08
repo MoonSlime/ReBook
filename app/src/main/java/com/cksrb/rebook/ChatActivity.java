@@ -22,6 +22,7 @@ public class ChatActivity extends AppCompatActivity {
     private ReBookApplication app;
 
     private String othersId=null;
+    private String cmpstr;
 
     //private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     //private DatabaseReference databaseReference = firebaseDatabase.getReference();
@@ -41,9 +42,15 @@ public class ChatActivity extends AppCompatActivity {
         // setContentView(R.layout.activity_chat);
         setContentView(R.layout.chat_main);
 
-        //othersId 읽어오기
 
         app=(ReBookApplication)getApplication();
+        //othersId 읽어오기
+        othersId="othersId";
+
+
+        if(app.getUserId().compareTo(othersId)>0)cmpstr=othersId+"|"+app.getUserId();
+        else cmpstr=app.getUserId()+"|"+othersId;
+
          //
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
@@ -61,21 +68,25 @@ public class ChatActivity extends AppCompatActivity {
         button_Push.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ChatData chatData = new ChatData(app.getUserId(), editText.getText().toString());  // 유저 이름과 메세지로 chatData 만들기
-                app.databaseReference.child("chat").child(app.getUserId()+"|"+othersId).push().setValue(chatData);  // 기본 database 하위 message라는 child에 chatData를 list로 만들기
+
+                ChatData chatData = new ChatData(app.getUserId(),othersId, editText.getText().toString());  // 유저 이름과 메세지로 chatData 만들기
+                app.databaseReference.child("ChatData").child(cmpstr).push().setValue(chatData);  // 기본 database 하위 message라는 child에 chatData를 list로 만들기
                 editText.setText("");
             }
         });
 
-        app.databaseReference.child("chat").child(app.getUserId()+"|"+othersId).addChildEventListener(new ChildEventListener() {  // message는 child의 이벤트를 수신합니다.
+        app.databaseReference.child("ChatData").child(cmpstr).addChildEventListener(new ChildEventListener() {  // message는 child의 이벤트를 수신합니다.
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 ChatData chatData = dataSnapshot.getValue(ChatData.class);  // chatData를 가져오고
-                if(cAdapter.getItemCount()==30){
-                    chatDataList.remove(0);
+
+                if(cmpstr.equals(chatData.getCmpstr())) {
+                    if (cAdapter.getItemCount() == 30) {
+                        chatDataList.remove(0);
+                    }
+                    chatDataList.add(chatData);
+                    cAdapter.notifyDataSetChanged();
                 }
-                chatDataList.add(chatData);
-                cAdapter.notifyDataSetChanged();
 
                 //TextView textView = (TextView)findViewById(R.id.textView);
                 //textView.setText(chatData.getUserId()+"send this\n=>"+chatData.getMessage());  // adapter에 추가합니다.
@@ -96,6 +107,7 @@ public class ChatActivity extends AppCompatActivity {
 
     }
 
+    /*
     private void prepareData(){
         ChatData chatData = new ChatData("1","1");
         chatDataList.add(chatData);
@@ -138,5 +150,5 @@ public class ChatActivity extends AppCompatActivity {
 
         cAdapter.notifyDataSetChanged();
     }
-
+    */
 }

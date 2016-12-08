@@ -5,29 +5,35 @@ package com.cksrb.rebook.DataForm;
  */
 
 public class ChatData {
-    private String userId;
+    private String cmpstr;
+    private String from;
+    private String to;
     private String message;
 
     public ChatData() { }
 
-    public ChatData(String userId, String message) {
-        this.userId = userId;
+    public ChatData(String from,String to, String message) {
+        this.from =from;
+        this.to=to;
         this.message = message;
+
+        if(from.compareTo(to)>0)cmpstr=to+"|"+from;
+        else cmpstr=from+"|"+to;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getFrom() {
+        return from;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public String getTo() {
+        return to;
     }
 
     public String getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public String getCmpstr() {
+        return cmpstr;
     }
 }
