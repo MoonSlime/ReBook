@@ -31,7 +31,8 @@
         <activity android:name=".SearchActivity" />
         <activity android:name=".BuyUniBook" />
         <activity android:name=".BuyNormalBook"></activity>
-        <activity android:name=".RegisterBookActivity" >
+        <activity android:name=".RegisterBookActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan">
 
         </activity>
         <activity android:name=".SignUpActivity"></activity>

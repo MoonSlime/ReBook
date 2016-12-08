@@ -72,6 +72,7 @@
             android:hint="여기에다가는 적고싶은말같은거 적으시면 됩니다."/>
 
     </ScrollView>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
