@@ -5,13 +5,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.cksrb.rebook.ListViewAdapter.ListViewAdapterDeal;
 import com.cksrb.rebook.ListViewItem;
 import com.cksrb.rebook.R;
 
-public class DealFragment extends Fragment{
+    public class DealFragment extends Fragment{
         private ListView booklist;
         private ListViewAdapterDeal adapter;
 
@@ -22,9 +25,12 @@ public class DealFragment extends Fragment{
 
         adapter = new ListViewAdapterDeal(getContext());
         booklist = (ListView) view.findViewById(R.id.dealList);
+        booklist.setItemsCanFocus(false);
         booklist.setAdapter(adapter);
 
-        addData();
+        for(int i = 1; i <= 10; i++) {
+            addData();
+        }
 
         adapter.notifyDataSetChanged();
 

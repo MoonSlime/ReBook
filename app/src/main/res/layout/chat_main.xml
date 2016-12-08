@@ -30,14 +30,18 @@
             android:id="@+id/editText"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#BBB"/>
+            android:layout_weight="3"
+            android:background="#ddd"
+            android:layout_marginRight="10dp"/>
 
         <Button
             android:id="@+id/button_Push"
-            android:layout_width="100dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="PUSH"/>
+            android:layout_weight="1"
+            android:text="PUSH"
+            android:background="#f77"
+            android:textColor="#fff"/>
 
     </LinearLayout>
 
