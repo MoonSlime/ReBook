@@ -2,12 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.cksrb.rebook.WishFragment">
+    tools:context="com.cksrb.rebook.WishFragment"
+    android:background="#f77">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="장바구니" />
+        android:id="@+id/wishList"
+        android:divider="#00000000">
+    </ListView>
 
 </FrameLayout>
