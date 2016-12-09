@@ -141,8 +141,10 @@ public class BookData {
 
     public boolean search(String search){
         search=search.toLowerCase();
-        if(title.toLowerCase().contains(search)||author.toLowerCase().contains(search)
-                ||publisher.toLowerCase().contains(search)||class_name.toLowerCase().contains(search))return true;
+        if(title!=null&&title.toLowerCase().contains(search))return true;
+        if(author!=null&&author.toLowerCase().contains(search))return true;
+        if(publisher!=null&&publisher.toLowerCase().contains(search))return true;
+        if(class_name!=null&&class_name.toLowerCase().contains(search))return true;
 
         return false;
     }
