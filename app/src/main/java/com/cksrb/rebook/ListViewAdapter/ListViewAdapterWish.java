@@ -5,8 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cksrb.rebook.DataForm.BookData;
 import com.cksrb.rebook.ListViewItem;
@@ -29,6 +31,8 @@ public class ListViewAdapterWish extends BaseAdapter {
     private ImageView bookCoverIcon;
     private TextView bookNameStr;
     private TextView sellerStr;
+
+    private Button wishCancelBtn;
 
     private ArrayList<ListViewItem> mList;
 
@@ -70,6 +74,14 @@ public class ListViewAdapterWish extends BaseAdapter {
         bookNameStr = (TextView) view.findViewById(R.id.wishBookNameTextView);
         sellerStr = (TextView) view.findViewById(R.id.wishSellerTextView);
 
+        wishCancelBtn = (Button) view.findViewById(R.id.wishCancelBtn);
+        wishCancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                wishCancel();
+            }
+        });
+
         mListview = (ListViewItem) getItem(position);
 
         if(mListview != null){
@@ -104,5 +116,12 @@ public class ListViewAdapterWish extends BaseAdapter {
 
     public void addData(ListViewItem bookList){
         mList.add(bookList);
+    }
+
+    public void wishCancel(){
+        String str=app.getUserId()+"|"+mListview.getIsbn();
+
+        app.databaseReference.child("WishList").child(str).setValue(null);
+        Toast.makeText(mContext,"장바구니가 취소되었습니다.",Toast.LENGTH_SHORT).show();
     }
 }
