@@ -80,7 +80,4 @@ public class ListViewAdapter extends BaseAdapter{
         mList.add(bookList);
     }
 
-    public void clear(){
-        mList.clear();
-    }
 }

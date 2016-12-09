@@ -12,13 +12,15 @@ public class ListViewItem{
     private String bookNameStr;
     private String sellerId;
     private String isbn;
+    private int type;
 
-    public ListViewItem(Drawable bookcover, String bookName, String seller,String sellerId,String isbn) {
+    public ListViewItem(Drawable bookcover, String bookName, String seller,String sellerId,String isbn,int type) {
         bookCoverDrawable = bookcover;
         bookNameStr = bookName;
         sellerStr = seller;
         this.sellerId=sellerId;
         this.isbn=isbn;
+        this.type=type;
     }
 
     public Drawable getBookCoverDrawable(){
@@ -37,5 +39,9 @@ public class ListViewItem{
 
     public String getIsbn() {
         return isbn;
+    }
+
+    public int getType() {
+        return type;
     }
 }

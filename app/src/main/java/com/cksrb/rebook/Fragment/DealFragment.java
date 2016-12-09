@@ -41,35 +41,40 @@ public class DealFragment extends Fragment{
     }
 
     public void addData(){
-        List<BookData> bookDataList = app.getBookList();
+        List<BookData> bookDataList=null;
+        for(int t=0;t<2;++t) {
+            if(t==0)bookDataList = app.getBookList();
+            else if(t==1)bookDataList = app.getBookList_normal();
 
-        int i=bookDataList.size();
-        for(;i>0;--i){
-            if(bookDataList.get(i-1).getSellerId().equals(app.getUserId())){
-                ListViewItem u=null;
-                if(bookDataList.get(i-1).getCustomerId()!=null){
-                    u = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_manage),
-                            bookDataList.get(i-1).getTitle(),"구매자 : "+bookDataList.get(i-1).getCustomerId()
-                            ,bookDataList.get(i-1).getSellerId(),bookDataList.get(i-1).getIsbn());
+            int i = bookDataList.size();
+            for (; i > 0; --i) {
+                if (bookDataList.get(i - 1).getSellerId().equals(app.getUserId())) {
+                    ListViewItem u = null;
+                    if (bookDataList.get(i - 1).getCustomerId() != null) {
+                        u = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_manage),
+                                bookDataList.get(i - 1).getTitle(), "구매자 : " + bookDataList.get(i - 1).getCustomerId()
+                                , bookDataList.get(i - 1).getSellerId(), bookDataList.get(i - 1).getIsbn(), bookDataList.get(i - 1).getType());
+                    } else {
+                        u = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_manage),
+                                bookDataList.get(i - 1).getTitle(), "구매자 : 없음"
+                                , bookDataList.get(i - 1).getSellerId()
+                                , bookDataList.get(i - 1).getIsbn()
+                                , bookDataList.get(i - 1).getType());
+                    }
+                    adapter.addData(u);
                 }
-                else{
+
+                if (bookDataList.get(i - 1).getCustomerId() != null && bookDataList.get(i - 1).getCustomerId().equals(app.getUserId())) {
+                    ListViewItem u = null;
                     u = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_manage),
-                            bookDataList.get(i-1).getTitle(),"구매자 : 없음"
-                            ,bookDataList.get(i-1).getSellerId()
-                    ,bookDataList.get(i-1).getIsbn());
+                            bookDataList.get(i - 1).getTitle(), "판매자 : " + bookDataList.get(i - 1).getSellerId()
+                            , bookDataList.get(i - 1).getSellerId(), bookDataList.get(i - 1).getIsbn()
+                            , bookDataList.get(i - 1).getType());
+
+                    adapter.addData(u);
                 }
-                adapter.addData(u);
+
             }
-
-            if(bookDataList.get(i-1).getCustomerId()!=null&&bookDataList.get(i-1).getCustomerId().equals(app.getUserId())){
-                ListViewItem u = null;
-                u = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_manage),
-                        bookDataList.get(i-1).getTitle(),"판매자 : "+bookDataList.get(i-1).getSellerId()
-                        ,bookDataList.get(i-1).getSellerId(),bookDataList.get(i-1).getIsbn());
-
-                adapter.addData(u);
-            }
-
         }
     }
 }

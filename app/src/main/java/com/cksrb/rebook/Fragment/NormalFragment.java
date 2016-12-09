@@ -1,9 +1,7 @@
 package com.cksrb.rebook.Fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -25,29 +23,51 @@ import com.cksrb.rebook.RegisterBookActivity;
 import java.util.List;
 
 public class NormalFragment extends Fragment{
+    private ReBookApplication app;
+
     private ListView booklist;
     private ListViewAdapter adapter;
+
+    private EditText editText_Search;
+    private Button button_Search;
+
+    private static int NORMAL = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_normal, null);
 
+        app=(ReBookApplication)getContext().getApplicationContext();
+
         adapter = new ListViewAdapter(getContext());
         booklist = (ListView) view.findViewById(R.id.normalList);
         booklist.setAdapter(adapter);
 
-        // add data
+        editText_Search = (EditText)view.findViewById(R.id.editText_Search);
+        button_Search = (Button) view.findViewById(R.id.button_Search);
+        button_Search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchData(editText_Search.getText().toString());
+            }
+        });
+
+        searchData(""); // add Data
 
         AdapterView.OnItemClickListener listViewClickListener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(getActivity(), BookInfo.class));
+                Intent intent = new Intent(getActivity(),BookInfo.class);
+                intent.putExtra("isbn",((ListViewItem)adapter.getItem(position)).getIsbn());
+                intent.putExtra("sellerId",((ListViewItem)adapter.getItem(position)).getSellerId());
+                intent.putExtra("title",((ListViewItem)adapter.getItem(position)).getBookName());
+                intent.putExtra("type",((ListViewItem)adapter.getItem(position)).getType());
+                startActivity(intent);
             }
         }; // when click list, open new activity(book info)
         booklist.setOnItemClickListener(listViewClickListener);
 
-        adapter.notifyDataSetChanged();
 
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fabNormal);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -60,11 +80,24 @@ public class NormalFragment extends Fragment{
 
         return view;
     }
+    public void searchData(String search){
+        adapter = new ListViewAdapter(getContext());
+        List<BookData> bookDataList = app.getBookList_normal();
 
-    public void addData(){
-        ListViewItem u1 = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_gallery),
-                "나는책이름", "나는작가","","");
-        adapter.addData(u1); // add list data
+        if(bookDataList!=null) {
+            int i = bookDataList.size();
+            for (; i > 0; --i) {
+
+                if (bookDataList.get(i - 1).search(search)&&bookDataList.get(i-1).getCustomerId()==null) {
+                    ListViewItem u1 = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_gallery), bookDataList.get(i - 1).getTitle()
+                            , bookDataList.get(i - 1).getAuthor(), bookDataList.get(i - 1).getSellerId(), bookDataList.get(i - 1).getIsbn(),NORMAL);
+                    adapter.addData(u1); // add list data
+                }
+            }
+        }
+
+        booklist.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
 }

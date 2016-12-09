@@ -139,8 +139,10 @@ public class BookData {
         return class_name;
     }
 
+
     public boolean search(String search){
         search=search.toLowerCase();
+
         if(title!=null&&title.toLowerCase().contains(search))return true;
         if(author!=null&&author.toLowerCase().contains(search))return true;
         if(publisher!=null&&publisher.toLowerCase().contains(search))return true;

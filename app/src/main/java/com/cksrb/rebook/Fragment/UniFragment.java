@@ -1,9 +1,7 @@
 package com.cksrb.rebook.Fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -33,6 +31,7 @@ public class UniFragment extends Fragment {
     private EditText editText_Search;
     private Button button_Search;
 
+    private static int UNI = 1;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,7 +50,6 @@ public class UniFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 searchData(editText_Search.getText().toString());
-                adapter.notifyDataSetChanged();
             }
         });
 
@@ -64,12 +62,13 @@ public class UniFragment extends Fragment {
                 intent.putExtra("isbn",((ListViewItem)adapter.getItem(position)).getIsbn());
                 intent.putExtra("sellerId",((ListViewItem)adapter.getItem(position)).getSellerId());
                 intent.putExtra("title",((ListViewItem)adapter.getItem(position)).getBookName());
+                intent.putExtra("type",((ListViewItem)adapter.getItem(position)).getType());
                 startActivity(intent);
             }
         }; // when click list, open new activity(book info)
 
         booklist.setOnItemClickListener(listViewClickListener);
-        adapter.notifyDataSetChanged();
+
 
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fabUni);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -84,21 +83,22 @@ public class UniFragment extends Fragment {
     }
 
     public void searchData(String search){
-        adapter.clear();
-
+        adapter = new ListViewAdapter(getContext());
         List<BookData> bookDataList = app.getBookList();
 
         if(bookDataList!=null) {
             int i = bookDataList.size();
             for (; i > 0; --i) {
 
-                if (bookDataList.get(i - 1).search(search)&&bookDataList.get(i-1).getCustomerId()==null) {
+               if (bookDataList.get(i - 1).search(search)&&bookDataList.get(i-1).getCustomerId()==null) {
                     ListViewItem u1 = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_gallery), bookDataList.get(i - 1).getTitle()
-                            , bookDataList.get(i - 1).getAuthor(), bookDataList.get(i - 1).getSellerId(), bookDataList.get(i - 1).getIsbn());
-
-                    adapter.addData(u1); // add list data
+                            , bookDataList.get(i - 1).getAuthor(), bookDataList.get(i - 1).getSellerId(), bookDataList.get(i - 1).getIsbn(),UNI);
+                   adapter.addData(u1); // add list data
                 }
             }
         }
+
+        booklist.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 }

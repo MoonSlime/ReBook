@@ -26,6 +26,7 @@ public class ReBookApplication extends Application {
     private String userId;
     private List<USER> userList = new ArrayList<>();
     private List<BookData> bookList = new ArrayList<>();
+    private List<BookData> bookList_normal = new ArrayList<>();
 
     @Override
     public void onCreate() {
@@ -52,6 +53,10 @@ public class ReBookApplication extends Application {
 
     public List<BookData> getBookList() {
         return bookList;
+    }
+
+    public List<BookData> getBookList_normal() {
+        return bookList_normal;
     }
 
     private void init(){
@@ -121,6 +126,50 @@ public class ReBookApplication extends Application {
                     if(bookList.get(i-1).getIsbn().equals(book.getIsbn())
                             &&bookList.get(i-1).getSellerId().equals(book.getSellerId())){
                         bookList.remove(i-1);
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        databaseReference.child("BookList").child("Normal").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                bookList_normal.add(dataSnapshot.getValue(BookData.class));
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                BookData book = dataSnapshot.getValue(BookData.class);
+
+                int i=bookList_normal.size();
+                for(;i>0;--i){
+                    if(bookList_normal.get(i-1).getIsbn().equals(book.getIsbn())
+                            &&bookList_normal.get(i-1).getSellerId().equals(book.getSellerId())){
+                        bookList_normal.get(i-1).setCustomerId(book.getCustomerId());
+                    }
+                }
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                BookData book = dataSnapshot.getValue(BookData.class);
+
+                int i=bookList_normal.size();
+                for(;i>0;--i){
+                    if(bookList_normal.get(i-1).getIsbn().equals(book.getIsbn())
+                            &&bookList_normal.get(i-1).getSellerId().equals(book.getSellerId())){
+                        bookList_normal.remove(i-1);
                         break;
                     }
                 }

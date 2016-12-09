@@ -79,7 +79,7 @@ public class RegisterBookActivity extends AppCompatActivity {
     }
     protected void registerBook(){
         if(check){
-            app.databaseReference.child("BookList").child("Uni").child(app.getUserId()+"|"+book.getIsbn()).setValue(book);
+            app.databaseReference.child("BookList").child("Normal").child(app.getUserId()+"|"+book.getIsbn()).setValue(book);
             Toast.makeText(getApplicationContext(),"판매 등록되었습니다.",Toast.LENGTH_SHORT).show();
             finish();
         }
@@ -190,7 +190,9 @@ public class RegisterBookActivity extends AppCompatActivity {
             if(type==1)book.setType(UNI);
             else if(type==2)book.setType(NORMAL);
 
-            List<BookData> bookList = app.getBookList();
+            //List<BookData> bookList = app.getBookList();
+            List<BookData> bookList = app.getBookList_normal();
+
             int i;
             check=true;
             for(i=bookList.size();i>0;--i){
