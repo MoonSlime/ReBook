@@ -42,7 +42,6 @@ public class BookInfo extends AppCompatActivity {
         type = intent.getIntExtra("type",1);
 
         title=intent.getStringExtra("title");
-
         titleInfo = (TextView)findViewById(R.id.titleInfo);
         titleInfo.setText(title);
         titleInfo.setSelected(true);
