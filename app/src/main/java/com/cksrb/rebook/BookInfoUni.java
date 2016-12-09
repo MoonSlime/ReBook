@@ -1,8 +1,8 @@
 package com.cksrb.rebook;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -12,7 +12,7 @@ import com.cksrb.rebook.DataForm.WishData;
 
 import java.util.List;
 
-public class BookInfo extends AppCompatActivity {
+public class BookInfoUni extends AppCompatActivity {
     private ReBookApplication app;
 
     private String isbn;
@@ -31,7 +31,7 @@ public class BookInfo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_book_info);
+        setContentView(R.layout.activity_book_info_uni);
 
         app=(ReBookApplication)getApplication();
 
@@ -42,11 +42,11 @@ public class BookInfo extends AppCompatActivity {
         type = intent.getIntExtra("type",1);
 
         title=intent.getStringExtra("title");
-        titleInfo = (TextView)findViewById(R.id.titleInfo);
+        titleInfo = (TextView)findViewById(R.id.titleInfoUni);
         titleInfo.setText(title);
         titleInfo.setSelected(true);
 
-        wishBook=(Button)findViewById(R.id.button_WishBook);
+        wishBook=(Button)findViewById(R.id.button_WishBookUni);
         wishBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,7 +54,7 @@ public class BookInfo extends AppCompatActivity {
             }
         });
 
-        buyBook = (Button)findViewById(R.id.button_BuyBook);
+        buyBook = (Button)findViewById(R.id.button_BuyBookUni);
         buyBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,19 +83,18 @@ public class BookInfo extends AppCompatActivity {
 
         int i = wishList.size();
         for(;i>0;--i){
-            if(wishList.get(i-1).getSellerId().equals(sellerId)&&wishList.get(i-1).getIsbn().equals(isbn)){
+            if(wishList.get(i-1).getSellerId().equals(sellerId)&&!wishList.get(i-1).getIsbn().equals(isbn)){
                 check=false;
-                break;
             }
         }
 
-         if(check){
+        if(check){
             WishData wishData = new WishData(app.getUserId(),isbn,sellerId,type);
             app.databaseReference.child("WishList").child(app.getUserId()+"|"+isbn).setValue(wishData);
-            Toast.makeText(getApplicationContext(),"장바구니에 추가되었습니다.",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"장바구니에 추가되었습니다.",Toast.LENGTH_SHORT);
             finish();
         }
-        else Toast.makeText(getApplicationContext(),"장바구니에 추가할수없습니다.",Toast.LENGTH_SHORT).show();
+        else Toast.makeText(getApplicationContext(),"장바구니에 추가할수없습니다.",Toast.LENGTH_SHORT);
 
     }
 }

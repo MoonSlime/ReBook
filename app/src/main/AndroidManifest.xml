@@ -41,9 +41,9 @@
         <activity
             android:name=".RegisterBookActivityUni"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity android:name=".CancelActivity"
-            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog">
-        </activity>
+
+        <activity android:name=".BookInfoUni"></activity>
+
     </application>
 
 </manifest>

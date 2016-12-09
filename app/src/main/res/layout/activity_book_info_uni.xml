@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_register_book"
+    android:id="@+id/activity_book_info_uni"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -9,17 +9,14 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="com.cksrb.rebook.RegisterBookActivity">
+    tools:context="com.cksrb.rebook.BookInfoUni">
 
-    <Button
-        android:id="@+id/button_scan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="바코드 스캔"
-        android:textSize="20dp"
-        android:background="#f77"
-        android:textColor="#fff"
-        android:layout_marginBottom="10dp"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/rebook"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,6 +25,7 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/imageInfoUni"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -41,7 +39,7 @@
             android:padding="5dp">
 
             <TextView
-                android:id="@+id/textView_title"
+                android:id="@+id/titleInfoUni"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -51,26 +49,34 @@
                 android:padding="5dp"/>
 
             <TextView
-                android:id="@+id/textView_publisher"
+                android:id="@+id/publisherInfoUni"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="출판사"
+                android:text="출판사"/>
                 android:padding="5dp"/>
             <TextView
+                android:id="@+id/priceInfoUni"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:text="정가"
                 android:padding="5dp"/>
 
-            <EditText
-                android:id="@+id/editTExt_sellPrice"
+            <TextView
+                android:id="@+id/sellPriceInfoUni"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:hint="판매가"
-                android:digits="1234567890"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/sellProfessorInfoUni"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:hint="교수님"
                 android:padding="5dp"/>
 
         </LinearLayout>
@@ -81,19 +87,38 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:padding="5dp">
-        <EditText
+        <TextView
+            android:id="@+id/etcTextUni"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="기타 내용"/>
     </ScrollView>
 
-    <Button
-        android:id="@+id/button_RegisterBook"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register Book"
-        android:layout_marginTop="10dp"
-        android:background="#f55"
-        android:textColor="#fff"/>
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/button_WishBookUni"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:text="Add Wish List"
+            android:background="#f55"
+            android:textColor="#fff"/>
+
+        <Button
+            android:id="@+id/button_BuyBookUni"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Buy Book"
+            android:background="#f55"
+            android:textColor="#fff"/>
+
+    </LinearLayout>
 
 </LinearLayout>

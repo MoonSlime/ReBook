@@ -163,6 +163,7 @@ public class RegisterBookActivity extends AppCompatActivity {
             JsonPrimitive jsonPrimitive = jsonObject_item.getAsJsonPrimitive("title");
             book.setTitle(jsonPrimitive.getAsString());
             textView_title.setText(book.getTitle());
+            textView_title.setSelected(true);
 
             jsonPrimitive = jsonObject_item.getAsJsonPrimitive("link");
             book.setLink(jsonPrimitive.getAsString());

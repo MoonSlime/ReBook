@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.cksrb.rebook.CancelActivity;
 import com.cksrb.rebook.ChatActivity;
 import com.cksrb.rebook.DataForm.BookData;
 import com.cksrb.rebook.ListViewItem;
@@ -77,8 +76,6 @@ public class ListViewAdapterDeal extends BaseAdapter{
             @Override
             public void onClick(View v) {
                 startChat();
-                //Intent intent = new Intent(mContext, ChatActivity.class);
-                //mContext.startActivity(intent);
             }
         });
 
@@ -196,8 +193,4 @@ public class ListViewAdapterDeal extends BaseAdapter{
         }
     }
 
-    public void cancel(){
-        Intent intent = new Intent(mContext, CancelActivity.class);
-        mContext.startActivity(intent);
-    }
 }
