@@ -29,12 +29,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SearchActivity" />
         <activity
             android:name=".RegisterBookActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".ListViewAdapter.ReBookApplicationNormal" />
+        <activity android:name=".BookInfo"
+            android:windowSoftInputMode="stateHidden|adjustPan"></activity>
     </application>
 
 </manifest>

@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.cksrb.rebook.BookInfo;
 import com.cksrb.rebook.DataForm.BookData;
 import com.cksrb.rebook.ListViewAdapter.ListViewAdapter;
 import com.cksrb.rebook.ListViewItem;
@@ -58,7 +59,7 @@ public class UniFragment extends Fragment {
         AdapterView.OnItemClickListener listViewClickListener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getActivity(), "abc"+position, Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getActivity(), BookInfo.class));
             }
         }; // when click list, open new activity(book info)
 
