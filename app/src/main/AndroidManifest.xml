@@ -32,9 +32,13 @@
         <activity
             android:name=".RegisterBookActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity android:name=".SignUpActivity"
+        <activity
+            android:name=".SignUpActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity android:name=".BookInfo"
+        <activity
+            android:name=".BookInfo"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity android:name=".RegisterBookActivityUni"
             android:windowSoftInputMode="stateHidden|adjustPan"></activity>
     </application>
 
