@@ -11,12 +11,14 @@ public class ListViewItem{
     private String sellerStr;
     private String bookNameStr;
     private String sellerId;
+    private String isbn;
 
-    public ListViewItem(Drawable bookcover, String bookName, String seller,String sellerId) {
+    public ListViewItem(Drawable bookcover, String bookName, String seller,String sellerId,String isbn) {
         bookCoverDrawable = bookcover;
         bookNameStr = bookName;
         sellerStr = seller;
         this.sellerId=sellerId;
+        this.isbn=isbn;
     }
 
     public Drawable getBookCoverDrawable(){
@@ -31,5 +33,9 @@ public class ListViewItem{
 
     public String getSellerId() {
         return sellerId;
+    }
+
+    public String getIsbn() {
+        return isbn;
     }
 }

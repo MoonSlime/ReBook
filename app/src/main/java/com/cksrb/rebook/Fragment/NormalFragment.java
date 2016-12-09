@@ -47,7 +47,7 @@ public class NormalFragment extends Fragment {
 
     public void addData(){
         ListViewItem u1 = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_gallery),
-                "나는책이름", "나는작가","");
+                "나는책이름", "나는작가","","");
         adapter.addData(u1); // add list data
     }
 }

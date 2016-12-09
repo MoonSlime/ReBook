@@ -101,7 +101,15 @@ public class ReBookApplication extends Application {
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                BookData book = dataSnapshot.getValue(BookData.class);
 
+                int i=bookList.size();
+                for(;i>0;--i){
+                    if(bookList.get(i-1).getIsbn().equals(book.getIsbn())
+                        &&bookList.get(i-1).getSellerId().equals(book.getSellerId())){
+                        bookList.get(i-1).setCustomerId(book.getCustomerId());
+                    }
+                }
             }
 
             @Override

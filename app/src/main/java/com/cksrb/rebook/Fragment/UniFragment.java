@@ -11,7 +11,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.cksrb.rebook.BookInfo;
 import com.cksrb.rebook.DataForm.BookData;
@@ -59,7 +58,11 @@ public class UniFragment extends Fragment {
         AdapterView.OnItemClickListener listViewClickListener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(getActivity(), BookInfo.class));
+                Intent intent = new Intent(getActivity(),BookInfo.class);
+                intent.putExtra("isbn",((ListViewItem)adapter.getItem(position)).getIsbn());
+                intent.putExtra("sellerId",((ListViewItem)adapter.getItem(position)).getSellerId());
+                intent.putExtra("title",((ListViewItem)adapter.getItem(position)).getBookName());
+                startActivity(intent);
             }
         }; // when click list, open new activity(book info)
 
@@ -87,7 +90,7 @@ public class UniFragment extends Fragment {
         for(;i>0;--i){
             if(bookDataList.get(i-1).search(search)){
                 ListViewItem u1 = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_gallery),bookDataList.get(i-1).getTitle()
-                        ,bookDataList.get(i-1).getAuthor(),bookDataList.get(i-1).getSellerId());
+                        ,bookDataList.get(i-1).getAuthor(),bookDataList.get(i-1).getSellerId(),bookDataList.get(i-1).getIsbn());
                 adapter.addData(u1); // add list data
             }
         }

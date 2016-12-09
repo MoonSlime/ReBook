@@ -35,7 +35,7 @@ public class WishFragment extends Fragment{
 
     public void addData(){
         ListViewItem u1 = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_send),
-                "나는 장바구니", "살거냣","");
+                "나는 장바구니", "살거냣","","");
         adapter.addData(u1); // add list data
     }
 }
