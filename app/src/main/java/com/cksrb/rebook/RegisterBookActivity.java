@@ -79,8 +79,9 @@ public class RegisterBookActivity extends AppCompatActivity {
     }
     protected void registerBook(){
         if(check){
-            app.databaseReference.child("BookList").child(app.getUserId()+"|"+book.getIsbn()).setValue(book);
-            Toast.makeText(getApplicationContext(),"판매 등록되었습니다.",Toast.LENGTH_SHORT);
+            app.databaseReference.child("BookList").child("Uni").child(app.getUserId()+"|"+book.getIsbn()).setValue(book);
+            Toast.makeText(getApplicationContext(),"판매 등록되었습니다.",Toast.LENGTH_SHORT).show();
+            finish();
         }
     }
 

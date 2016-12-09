@@ -3,8 +3,8 @@ package com.cksrb.rebook.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +21,6 @@ import com.cksrb.rebook.RegisterBookActivity;
 import java.net.MalformedURLException;
 
 public class UniFragment extends Fragment {
-
     private ListView booklist;
     private ListViewAdapter adapter;
 
@@ -30,6 +29,7 @@ public class UniFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_uni, null);
 
+      //  getContext().getApplicationContext();
         adapter = new ListViewAdapter(getContext());
         booklist = (ListView) view.findViewById(R.id.uniList);
         booklist.setAdapter(adapter);

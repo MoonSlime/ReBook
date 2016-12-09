@@ -93,7 +93,7 @@ public class ReBookApplication extends Application {
             }
         });
 
-        databaseReference.child("BookList").addChildEventListener(new ChildEventListener() {
+        databaseReference.child("BookList").child("Uni").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 bookList.add(dataSnapshot.getValue(BookData.class));
