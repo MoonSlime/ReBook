@@ -37,7 +37,7 @@ public class RegisterBookActivity extends AppCompatActivity {
     private TextView textView_publisher;
     private EditText sellprice;
 
-    private int type=1;
+    private int type=2;
     private static int UNI = 1;
     private static int NORMAL = 0;
 

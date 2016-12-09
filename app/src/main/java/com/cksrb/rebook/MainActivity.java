@@ -1,27 +1,20 @@
 package com.cksrb.rebook;
 
-import android.support.design.widget.TabLayout;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 import com.cksrb.rebook.Fragment.DealFragment;
 import com.cksrb.rebook.Fragment.NormalFragment;
 import com.cksrb.rebook.Fragment.UniFragment;
 import com.cksrb.rebook.Fragment.WishFragment;
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -60,34 +53,6 @@ public class MainActivity extends AppCompatActivity {
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-    }
-
-    public void onClick1(View view){
-        new IntentIntegrator(this).initiateScan();
-        //Intent intent = new Intent(this,ScanActivity.class);
-        //startActivity(intent);
-    }
-
-    public void onClick2(View view){
-        Intent intent = new Intent(this,ChatActivity.class);
-        startActivity(intent);
-    }
-
-
-    protected void onActivityResult(int requestCode,int resultCode,Intent data) {
-        //QR코드/바코드를 스캔한 결과 값을 가져옴
-        IntentResult result = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
-
-        //결과값 출력
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.app_name)
-                .setMessage(result.getContents() + "["+ result.getFormatName()+"]")
-                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                }).show();
     }
 
     //Duggy

@@ -18,6 +18,7 @@ public class WishData {
         this.userId=userId;
         this.isbn=isbn;
         this.type=type;
+        this.sellerId=sellerId;
     }
 
     public String getUserId() {

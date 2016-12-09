@@ -84,17 +84,18 @@ public class BookInfo extends AppCompatActivity {
         int i = wishList.size();
         for(;i>0;--i){
             if(wishList.get(i-1).getSellerId().equals(sellerId)&&!wishList.get(i-1).getIsbn().equals(isbn)){
-               check=false;
+                check=false;
+                break;
             }
         }
 
-        if(check){
+         if(check){
             WishData wishData = new WishData(app.getUserId(),isbn,sellerId,type);
             app.databaseReference.child("WishList").child(app.getUserId()+"|"+isbn).setValue(wishData);
-            Toast.makeText(getApplicationContext(),"장바구니에 추가되었습니다.",Toast.LENGTH_SHORT);
+            Toast.makeText(getApplicationContext(),"장바구니에 추가되었습니다.",Toast.LENGTH_SHORT).show();
             finish();
         }
-        else Toast.makeText(getApplicationContext(),"장바구니에 추가할수없습니다.",Toast.LENGTH_SHORT);
+        else Toast.makeText(getApplicationContext(),"장바구니에 추가할수없습니다.",Toast.LENGTH_SHORT).show();
 
     }
 }

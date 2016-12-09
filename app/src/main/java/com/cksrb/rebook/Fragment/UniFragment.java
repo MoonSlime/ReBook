@@ -18,12 +18,11 @@ import com.cksrb.rebook.ListViewAdapter.ListViewAdapter;
 import com.cksrb.rebook.ListViewItem;
 import com.cksrb.rebook.R;
 import com.cksrb.rebook.ReBookApplication;
-import com.cksrb.rebook.RegisterBookActivity;
 import com.cksrb.rebook.RegisterBookActivityUni;
 
 import java.util.List;
 
-public class UniFragment extends Fragment {
+public class UniFragment extends Fragment{
     ReBookApplication app;
 
     private ListView booklist;
@@ -79,6 +78,20 @@ public class UniFragment extends Fragment {
                 startActivity(intent);
             }
         }); // Floating Action Button >> when click this, open buy_activity
+
+       /* view.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                int action = motionEvent.getAction();
+                int id = view.getId();
+                Toast.makeText(getContext().getApplicationContext(), "World", Toast.LENGTH_SHORT).show();
+                if(action == MotionEvent.ACTION_DOWN){
+                    Toast.makeText(getContext().getApplicationContext(), "Hello", Toast.LENGTH_SHORT).show();
+                    adapter.notifyDataSetChanged();
+                }
+                return false;
+            }
+        });*/
 
         return view;
     }
