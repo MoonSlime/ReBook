@@ -17,12 +17,17 @@ public class BookData {
     private String customerId;
     private String sellerId;
     private String sellPrice;
+    private String etc;
 
     private int type;
 
     public BookData(){
         customerId=null;
         sellerId=null;
+    }
+
+    public void setEtc(String etc) {
+        this.etc = etc;
     }
 
     public void setSellPrice(String sellPrice) {
@@ -107,6 +112,10 @@ public class BookData {
 
     public String getPublisher() {
         return publisher;
+    }
+
+    public String getEtc() {
+        return etc;
     }
 
     public String getDescription() {
