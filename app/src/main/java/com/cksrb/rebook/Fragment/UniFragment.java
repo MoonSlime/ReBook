@@ -1,5 +1,6 @@
 package com.cksrb.rebook.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,6 +16,7 @@ import com.cksrb.rebook.DataForm.BookData;
 import com.cksrb.rebook.ListViewAdapter.ListViewAdapter;
 import com.cksrb.rebook.ListViewItem;
 import com.cksrb.rebook.R;
+import com.cksrb.rebook.RegisterBookActivity;
 
 import java.net.MalformedURLException;
 
@@ -55,8 +57,8 @@ public class UniFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "this is uni book", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(getActivity(), RegisterBookActivity.class);
+                startActivity(intent);
             }
         }); // Floating Action Button >> when click this, open buy_activity
 

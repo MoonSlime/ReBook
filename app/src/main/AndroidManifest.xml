@@ -16,11 +16,12 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".MainActivity"
-            android:windowSoftInputMode="stateHidden|adjustPan">
-        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity android:name=".ChatActivity" />
-        <activity android:name=".LoginActivity"
+        <activity
+            android:name=".LoginActivity"
             android:windowSoftInputMode="stateHidden|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,13 +30,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".SearchActivity" />
-        <activity android:name=".BuyUniBook" />
-        <activity android:name=".BuyNormalBook"></activity>
-        <activity android:name=".RegisterBookActivity"
-            android:windowSoftInputMode="stateHidden|adjustPan">
-
-        </activity>
-        <activity android:name=".SignUpActivity"></activity>
+        <activity
+            android:name=".RegisterBookActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".ListViewAdapter.ReBookApplicationNormal" />
     </application>
 
 </manifest>

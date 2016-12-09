@@ -29,7 +29,6 @@ import com.cksrb.rebook.R;
             addData();
         //}
 
-
         adapter.notifyDataSetChanged();
 
         return view;

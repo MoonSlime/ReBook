@@ -15,7 +15,10 @@
         android:id="@+id/button_scan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="바코드 스캔"/>
+        android:text="바코드 스캔"
+        android:background="#f77"
+        android:textColor="#fff"
+        android:layout_marginBottom="10dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,39 +29,46 @@
         <ImageView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:layout_marginRight="10dp"/>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="5dp">
 
             <TextView
                 android:id="@+id/textView_title"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="제목 : 안드로이드 프로그래밍"/>
+                android:text="제목 : 안드로이드 프로그래밍"
+                android:padding="5dp"/>
 
             <TextView
                 android:id="@+id/textView_publisher"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="출판사 : 찬규"/>
+                android:text="출판사 : 찬규"
+                android:padding="5dp"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="정가 : 100원"/>
+                android:text="정가 : 100원"
+                android:padding="5dp"/>
 
             <EditText
                 android:id="@+id/editTExt_sellPrice"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:hint="판매가"/>
+                android:hint="판매가"
+                android:digits="1234567890"
+                android:padding="5dp"/>
 
         </LinearLayout>
     </LinearLayout>
@@ -66,18 +76,21 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:padding="5dp">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="여기에다가는 적고싶은말같은거 적으시면 됩니다."/>
-
+            android:hint="기타 내용"/>
     </ScrollView>
 
     <Button
         android:id="@+id/button_RegisterBook"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register Book"/>
+        android:text="Register Book"
+        android:layout_marginTop="10dp"
+        android:background="#f55"
+        android:textColor="#fff"/>
 
 </LinearLayout>
