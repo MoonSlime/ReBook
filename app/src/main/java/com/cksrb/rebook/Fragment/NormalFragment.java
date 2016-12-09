@@ -3,7 +3,6 @@ package com.cksrb.rebook.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,7 +47,7 @@ public class NormalFragment extends Fragment {
 
     public void addData(){
         ListViewItem u1 = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_gallery),
-                "나는책이름", "나는작가");
+                "나는책이름", "나는작가","");
         adapter.addData(u1); // add list data
     }
 }

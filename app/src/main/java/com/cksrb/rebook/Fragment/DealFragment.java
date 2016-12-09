@@ -49,23 +49,14 @@ public class DealFragment extends Fragment{
                 ListViewItem u=null;
                 if(bookDataList.get(i-1).getCustomerId()!=null){
                     u = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_manage),
-                            bookDataList.get(i-1).getTitle(),"구매자 : "+bookDataList.get(i-1).getCustomerId());
+                            bookDataList.get(i-1).getTitle(),"구매자 : "+bookDataList.get(i-1).getCustomerId(),bookDataList.get(i-1).getSellerId());
                 }
                 else{
                     u = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_manage),
-                            bookDataList.get(i-1).getTitle(),"구매자 : 없음");
+                            bookDataList.get(i-1).getTitle(),"구매자 : 없음",bookDataList.get(i-1).getSellerId());
                 }
                 adapter.addData(u);
             }
         }
-/*
-        ListViewItem u1 = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_manage),
-                "거래현황 1", "채팅해랏");
-        adapter.addData(u1); // add list data
-
-        u1 = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_manage),
-                "거래현황 2", "채팅해랏");
-        adapter.addData(u1); // add list data
-*/
     }
 }

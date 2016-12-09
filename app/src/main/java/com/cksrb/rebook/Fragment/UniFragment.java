@@ -85,8 +85,8 @@ public class UniFragment extends Fragment {
         int i=bookDataList.size();
         for(;i>0;--i){
             if(bookDataList.get(i-1).search(search)){
-                ListViewItem u1 = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_gallery),app.getBookList().get(i-1).getTitle()
-                        ,app.getBookList().get(i-1).getAuthor());
+                ListViewItem u1 = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_gallery),bookDataList.get(i-1).getTitle()
+                        ,bookDataList.get(i-1).getAuthor(),bookDataList.get(i-1).getSellerId());
                 adapter.addData(u1); // add list data
             }
         }
