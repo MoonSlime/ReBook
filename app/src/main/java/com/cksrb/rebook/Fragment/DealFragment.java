@@ -60,6 +60,7 @@ public class DealFragment extends Fragment{
                 }
                 adapter.addData(u);
             }
+
             if(bookDataList.get(i-1).getCustomerId()!=null&&bookDataList.get(i-1).getCustomerId().equals(app.getUserId())){
                 ListViewItem u = null;
                 u = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_manage),
@@ -68,6 +69,7 @@ public class DealFragment extends Fragment{
 
                 adapter.addData(u);
             }
+
         }
     }
 }

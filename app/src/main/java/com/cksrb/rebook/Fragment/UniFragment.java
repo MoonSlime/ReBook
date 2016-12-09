@@ -1,7 +1,9 @@
 package com.cksrb.rebook.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -29,7 +31,7 @@ public class UniFragment extends Fragment {
     private ListViewAdapter adapter;
 
     private EditText editText_Search;
-    private Button button_Search ;
+    private Button button_Search;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -89,9 +91,11 @@ public class UniFragment extends Fragment {
         if(bookDataList!=null) {
             int i = bookDataList.size();
             for (; i > 0; --i) {
+
                 if (bookDataList.get(i - 1).search(search)&&bookDataList.get(i-1).getCustomerId()==null) {
                     ListViewItem u1 = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_gallery), bookDataList.get(i - 1).getTitle()
                             , bookDataList.get(i - 1).getAuthor(), bookDataList.get(i - 1).getSellerId(), bookDataList.get(i - 1).getIsbn());
+
                     adapter.addData(u1); // add list data
                 }
             }
