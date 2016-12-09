@@ -56,19 +56,39 @@
             </LinearLayout>
         </LinearLayout>
 
-        <Button
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="80dp"
-            android:layout_marginLeft="80dp"
-            android:text="채팅하기"
-            android:background="#faa"
-            android:id="@+id/dealBuyBtn"
-            android:textColor="#333"
-            android:focusable="false"></Button>
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:padding="5dp"
+                android:text="채팅하기"
+                android:background="#faa"
+                android:id="@+id/dealBuyBtn"
+                android:textColor="#333"
+                android:layout_marginRight="10dp"
+                android:focusable="false"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:padding="5dp"
+                android:text="거래취소"
+                android:background="#faa"
+                android:id="@+id/dealCancelBtn"
+                android:textColor="#333"
+                android:focusable="false"/>
+        </LinearLayout>
+
+
     </LinearLayout>
 
 </LinearLayout>
