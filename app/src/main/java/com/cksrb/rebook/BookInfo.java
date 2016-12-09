@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class BookInfo extends AppCompatActivity {
     private ReBookApplication app;
@@ -13,7 +14,7 @@ public class BookInfo extends AppCompatActivity {
     private String isbn;
     private String sellerId;
     private String title;
-
+    private String type;
 
 
     private TextView titleInfo;
@@ -41,8 +42,12 @@ public class BookInfo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(!app.getUserId().equals(sellerId))
-                    app.databaseReference.child("BookList").child(sellerId+"|"+isbn)
+                    type="Uni";
+                    app.databaseReference.child("BookList").child(type).child(sellerId+"|"+isbn)
                         .child("customerId").setValue(app.getUserId());
+
+                Toast.makeText(getApplicationContext(),"거래목록에 추가되었습니다.",Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
     }
