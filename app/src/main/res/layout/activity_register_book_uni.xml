@@ -48,6 +48,7 @@
                 android:layout_weight="1"
                 android:text="책 이름"
                 android:singleLine="true"
+                android:ellipsize="marquee"
                 android:padding="5dp"/>
 
             <TextView

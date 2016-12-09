@@ -45,6 +45,7 @@ public class BookInfo extends AppCompatActivity {
 
         titleInfo = (TextView)findViewById(R.id.titleInfo);
         titleInfo.setText(title);
+        titleInfo.setSelected(true);
 
         wishBook=(Button)findViewById(R.id.button_WishBook);
         wishBook.setOnClickListener(new View.OnClickListener() {

@@ -42,7 +42,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="제목 : 안드로이드 프로그래밍"
+                android:text="책 이름"
+                android:singleLine="true"
+                android:ellipsize="marquee"
                 android:padding="5dp"/>
 
             <TextView
@@ -50,14 +52,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="출판사 : 찬규"
+                android:text="출판사"
                 android:padding="5dp"/>
             <TextView
                 android:id="@+id/priceInfo"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="정가 : 100원"
+                android:text="정가"
                 android:padding="5dp"/>
 
             <TextView
