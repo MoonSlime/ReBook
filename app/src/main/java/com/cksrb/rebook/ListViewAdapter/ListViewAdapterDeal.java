@@ -66,15 +66,20 @@ public class ListViewAdapterDeal extends BaseAdapter{
         bookNameStr = (TextView) view.findViewById(R.id.dealBookNameTextView);
         sellerStr = (TextView) view.findViewById(R.id.dealSellerTextView);
 
-        Button btn = (Button) view.findViewById(R.id.dealBuyBtn);
-        btn.setOnClickListener(new Button.OnClickListener(){
+        Button btnBuy = (Button) view.findViewById(R.id.dealBuyBtn);
+        btnBuy.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Vibrator vibrator = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
-                vibrator.vibrate(1000);
-
                 Intent intent = new Intent(mContext, ChatActivity.class);
                 mContext.startActivity(intent);
+            }
+        });
+
+        Button btnCancel = (Button) view.findViewById(R.id.dealBuyBtn);
+        btnCancel.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                // cancel
             }
         });
 
