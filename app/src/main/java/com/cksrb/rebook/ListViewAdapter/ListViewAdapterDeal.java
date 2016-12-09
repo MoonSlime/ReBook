@@ -12,11 +12,13 @@ import android.widget.TextView;
 
 import com.cksrb.rebook.CancelActivity;
 import com.cksrb.rebook.ChatActivity;
+import com.cksrb.rebook.DataForm.BookData;
 import com.cksrb.rebook.ListViewItem;
 import com.cksrb.rebook.R;
 import com.cksrb.rebook.ReBookApplication;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Duck on 2016-12-08.
@@ -73,16 +75,17 @@ public class ListViewAdapterDeal extends BaseAdapter{
         btnBuy.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
+                //startChat();
                 Intent intent = new Intent(mContext, ChatActivity.class);
                 mContext.startActivity(intent);
             }
         });
 
         Button btnCancel = (Button) view.findViewById(R.id.dealCancelBtn);
-        btnCancel.setOnClickListener(new Button.OnClickListener(){
+        btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                cancel();
+            public void onClick(View view) {
+                onClick_cancel();
             }
         });
 
@@ -101,6 +104,36 @@ public class ListViewAdapterDeal extends BaseAdapter{
 
     public void addData(ListViewItem bookList){
         mList.add(bookList);
+    }
+
+    public void onClick_cancel(){
+        List<BookData> bookDataList=null;
+        String type=null;
+        if(mListview.getType()==1) {
+            type="Uni";
+            bookDataList = app.getBookList();
+        }
+        else if(mListview.getType()==0){
+            type="Normal";
+            bookDataList = app.getBookList_normal();
+        }
+
+        int i=bookDataList.size();
+        for(;i>0;--i){
+            if(bookDataList.get(i-1).getSellerId().equals(mListview.getSellerId())
+                    &&bookDataList.get(i-1).getIsbn().equals(mListview.getIsbn())){
+
+                app.databaseReference.child("BookList").child(type)
+                        .child(mListview.getSellerId()+"|"+mListview.getIsbn()).child("customerId").setValue(null);
+
+                if(type.equals("Uni")){
+                    app.getBookList().get(i-1).setCustomerId(null);
+                }
+                else{
+                    app.getBookList_normal().get(i-1).setCustomerId(null);
+                }
+            }
+        }
     }
 
     public void cancel(){

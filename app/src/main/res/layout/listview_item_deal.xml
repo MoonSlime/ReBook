@@ -85,7 +85,7 @@
                 android:background="#faa"
                 android:id="@+id/dealCancelBtn"
                 android:textColor="#333"
-                android:focusable="false"/>
+                android:focusable="false" />
         </LinearLayout>
 
 
