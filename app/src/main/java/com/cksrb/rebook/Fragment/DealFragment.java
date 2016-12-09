@@ -2,6 +2,7 @@ package com.cksrb.rebook.Fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,16 +16,21 @@ import com.cksrb.rebook.ReBookApplication;
 
 import java.util.List;
 
-public class DealFragment extends Fragment{
+public class DealFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
     private ReBookApplication app;
 
     private ListView booklist;
     private ListViewAdapterDeal adapter;
 
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_deal, null);
+
+        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_layout);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
 
         app = (ReBookApplication)getContext().getApplicationContext();
 
@@ -35,6 +41,7 @@ public class DealFragment extends Fragment{
 
         addData();
 
+        booklist.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
         return view;
@@ -76,5 +83,15 @@ public class DealFragment extends Fragment{
 
             }
         }
+    }
+
+    @Override
+    public void onRefresh() {
+        addData();
+        booklist.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
+        // 새로고침 완료
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 }
