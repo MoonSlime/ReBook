@@ -19,6 +19,7 @@ import com.cksrb.rebook.ListViewItem;
 import com.cksrb.rebook.R;
 import com.cksrb.rebook.ReBookApplication;
 import com.cksrb.rebook.RegisterBookActivity;
+import com.cksrb.rebook.RegisterBookActivityUni;
 
 import java.util.List;
 
@@ -74,7 +75,7 @@ public class UniFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), RegisterBookActivity.class);
+                Intent intent = new Intent(getActivity(), RegisterBookActivityUni.class);
                 startActivity(intent);
             }
         }); // Floating Action Button >> when click this, open buy_activity

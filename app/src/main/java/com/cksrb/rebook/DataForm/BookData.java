@@ -19,6 +19,7 @@ public class BookData {
     private String sellerId;
     private String sellPrice;
     private String etc;
+    private String professor;
 
     private int type;
 
@@ -83,6 +84,10 @@ public class BookData {
         this.type = type;
     }
 
+    public void setProfessor(String professor){
+        this.professor = professor;
+    }
+
     public String getCustomerId() {
         return customerId;
     }
@@ -121,6 +126,10 @@ public class BookData {
 
     public String getEtc() {
         return etc;
+    }
+
+    public String getProfessor(){
+        return  professor;
     }
 
     public String getDescription() {
