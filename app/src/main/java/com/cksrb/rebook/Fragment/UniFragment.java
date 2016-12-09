@@ -9,14 +9,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.cksrb.rebook.DataForm.BookData;
 import com.cksrb.rebook.ListViewAdapter.ListViewAdapter;
 import com.cksrb.rebook.ListViewItem;
 import com.cksrb.rebook.R;
 import com.cksrb.rebook.ReBookApplication;
 import com.cksrb.rebook.RegisterBookActivity;
+
+import java.util.List;
 
 public class UniFragment extends Fragment {
     ReBookApplication app;
@@ -24,6 +28,7 @@ public class UniFragment extends Fragment {
     private ListView booklist;
     private ListViewAdapter adapter;
 
+    private EditText editText_Search;
     private Button button_Search ;
 
     @Override
@@ -37,15 +42,18 @@ public class UniFragment extends Fragment {
         booklist = (ListView) view.findViewById(R.id.uniList);
         booklist.setAdapter(adapter);
 
+
+        editText_Search = (EditText)view.findViewById(R.id.editText_Search);
         button_Search = (Button) view.findViewById(R.id.button_Search);
         button_Search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                searchData(editText_Search.getText().toString());
                 adapter.notifyDataSetChanged();
             }
         });
 
-        addData(); // add Data
+        searchData(""); // add Data
 
         AdapterView.OnItemClickListener listViewClickListener = new AdapterView.OnItemClickListener() {
             @Override
@@ -69,10 +77,19 @@ public class UniFragment extends Fragment {
         return view;
     }
 
-    public void addData(){
-        ListViewItem u1 = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_gallery),app.getBookList().get(0).getTitle()
-                ,app.getBookList().get(0).getAuthor());
-       // ListViewItem  u1 = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_gallery), "나는대학서적", "나는교수");
-        adapter.addData(u1); // add list data
+    public void searchData(String search){
+        adapter.clear();
+
+        List<BookData> bookDataList = app.getBookList();
+
+        int i=bookDataList.size();
+        for(;i>0;--i){
+            if(bookDataList.get(i-1).search(search)){
+                ListViewItem u1 = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_gallery),app.getBookList().get(i-1).getTitle()
+                        ,app.getBookList().get(i-1).getAuthor());
+                adapter.addData(u1); // add list data
+            }
+        }
+
     }
 }

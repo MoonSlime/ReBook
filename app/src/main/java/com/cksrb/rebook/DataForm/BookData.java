@@ -14,6 +14,7 @@ public class BookData {
     private String publisher;
     private String description;
 
+    private String class_name;
     private String customerId;
     private String sellerId;
     private String sellPrice;
@@ -28,6 +29,10 @@ public class BookData {
 
     public void setEtc(String etc) {
         this.etc = etc;
+    }
+
+    public void setClass_name(String class_name) {
+        this.class_name = class_name;
     }
 
     public void setSellPrice(String sellPrice) {
@@ -128,5 +133,17 @@ public class BookData {
 
     public int getType() {
         return type;
+    }
+
+    public String getClass_name() {
+        return class_name;
+    }
+
+    public boolean search(String search){
+        search=search.toLowerCase();
+        if(title.toLowerCase().contains(search)||author.toLowerCase().contains(search)
+                ||publisher.toLowerCase().contains(search)||class_name.toLowerCase().contains(search))return true;
+
+        return false;
     }
 }

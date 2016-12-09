@@ -1,20 +1,15 @@
 package com.cksrb.rebook.ListViewAdapter;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.cksrb.rebook.ListViewItem;
 import com.cksrb.rebook.R;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -79,7 +74,12 @@ public class ListViewAdapter extends BaseAdapter{
         return view;
     }
 
+
     public void addData(ListViewItem bookList){
         mList.add(bookList);
+    }
+
+    public void clear(){
+        mList.clear();
     }
 }
