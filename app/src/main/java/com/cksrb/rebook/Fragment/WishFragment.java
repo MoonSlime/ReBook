@@ -7,30 +7,56 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.cksrb.rebook.DataForm.BookData;
 import com.cksrb.rebook.ListViewAdapter.ListViewAdapterWish;
 import com.cksrb.rebook.ListViewItem;
 import com.cksrb.rebook.R;
+import com.cksrb.rebook.ReBookApplication;
+
+import java.util.List;
 
 public class WishFragment extends Fragment{
-        private ListView booklist;
-        private ListViewAdapterWish adapter;
+    private ReBookApplication app;
 
+    private ListView booklist;
+    private ListViewAdapterWish adapter;
+
+    private static int UNI = 1;
+    private static int NORMAL = 0;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_wish, null);
 
+        app=(ReBookApplication)getContext().getApplicationContext();
+
         adapter = new ListViewAdapterWish(getContext());
         booklist = (ListView) view.findViewById(R.id.wishList);
         booklist.setAdapter(adapter);
 
-        for(int i = 1; i < 10; i++) {
-            addData(); // add Data
-        }
-
-        adapter.notifyDataSetChanged();
+        searchData(""); // add Data
 
         return view;
+    }
+
+    public void searchData(String search){
+        adapter = new ListViewAdapterWish(getContext());
+        List<BookData> bookDataList = app.getBookList();
+
+        if(bookDataList!=null) {
+            int i = bookDataList.size();
+            for (; i > 0; --i) {
+
+                if (bookDataList.get(i - 1).search(search)&&bookDataList.get(i-1).getCustomerId()==null) {
+                    ListViewItem u1 = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_gallery), bookDataList.get(i - 1).getTitle()
+                            , bookDataList.get(i - 1).getAuthor(), bookDataList.get(i - 1).getSellerId(), bookDataList.get(i - 1).getIsbn(),UNI);
+                    adapter.addData(u1); // add list data
+                }
+            }
+        }
+
+        booklist.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
     public void addData(){

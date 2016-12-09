@@ -2,7 +2,6 @@ package com.cksrb.rebook.ListViewAdapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,6 @@ import android.widget.TextView;
 import com.cksrb.rebook.ChatActivity;
 import com.cksrb.rebook.ListViewItem;
 import com.cksrb.rebook.R;
-import com.cksrb.rebook.RegisterBookActivity;
 
 import java.util.ArrayList;
 
@@ -75,10 +73,11 @@ public class ListViewAdapterDeal extends BaseAdapter{
             }
         });
 
-        Button btnCancel = (Button) view.findViewById(R.id.dealBuyBtn);
+        Button btnCancel = (Button) view.findViewById(R.id.dealCancelBtn);
         btnCancel.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
+
                 // cancel
             }
         });

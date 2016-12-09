@@ -5,6 +5,7 @@ import android.widget.Toast;
 
 import com.cksrb.rebook.DataForm.BookData;
 import com.cksrb.rebook.DataForm.USER;
+import com.cksrb.rebook.DataForm.WishData;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,6 +28,7 @@ public class ReBookApplication extends Application {
     private List<USER> userList = new ArrayList<>();
     private List<BookData> bookList = new ArrayList<>();
     private List<BookData> bookList_normal = new ArrayList<>();
+    private List<WishData> wishList = new ArrayList<>();
 
     @Override
     public void onCreate() {
@@ -57,6 +59,10 @@ public class ReBookApplication extends Application {
 
     public List<BookData> getBookList_normal() {
         return bookList_normal;
+    }
+
+    public List<WishData> getWishList() {
+        return wishList;
     }
 
     private void init(){
@@ -171,6 +177,42 @@ public class ReBookApplication extends Application {
                             &&bookList_normal.get(i-1).getSellerId().equals(book.getSellerId())){
                         bookList_normal.remove(i-1);
                         break;
+                    }
+                }
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        databaseReference.child("WishList").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                wishList.add(dataSnapshot.getValue(WishData.class));
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot){
+                WishData wishData = dataSnapshot.getValue(WishData.class);
+
+                int i=wishList.size();
+
+                for(;i>0;--i){
+                    if(wishList.get(i-1).getIsbn().equals(wishData.getIsbn())
+                            &&wishList.get(i-1).getUserId().equals(wishData.getUserId())
+                            &&wishList.get(i-1).getType()==wishData.getType()){
+                        wishList.remove(i-1);
                     }
                 }
             }

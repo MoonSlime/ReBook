@@ -8,6 +8,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cksrb.rebook.DataForm.WishData;
+
+import java.util.List;
+
 public class BookInfo extends AppCompatActivity {
     private ReBookApplication app;
 
@@ -19,7 +23,7 @@ public class BookInfo extends AppCompatActivity {
 
     private TextView titleInfo;
     private Button buyBook;
-
+    private Button wishBook;
 
     private static int UNI = 1;
     private static int NORMAL = 0;
@@ -42,6 +46,14 @@ public class BookInfo extends AppCompatActivity {
         titleInfo = (TextView)findViewById(R.id.titleInfo);
         titleInfo.setText(title);
 
+        wishBook=(Button)findViewById(R.id.button_WishBook);
+        wishBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                IWishYourMerryChristmas();
+            }
+        });
+
         buyBook = (Button)findViewById(R.id.button_BuyBook);
         buyBook.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,5 +72,29 @@ public class BookInfo extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void IWishYourMerryChristmas(){
+        List<WishData> wishList = app.getWishList();
+
+        if(wishList==null)return ;
+
+        boolean check=true;
+
+        int i = wishList.size();
+        for(;i>0;--i){
+            if(wishList.get(i-1).getSellerId().equals(sellerId)&&!wishList.get(i-1).getIsbn().equals(isbn)){
+               check=false;
+            }
+        }
+
+        if(check){
+            WishData wishData = new WishData(app.getUserId(),isbn,sellerId,type);
+            app.databaseReference.child("WishList").child(app.getUserId()+"|"+isbn).setValue(wishData);
+            Toast.makeText(getApplicationContext(),"장바구니에 추가되었습니다.",Toast.LENGTH_SHORT);
+            finish();
+        }
+        else Toast.makeText(getApplicationContext(),"장바구니에 추가할수없습니다.",Toast.LENGTH_SHORT);
+
     }
 }

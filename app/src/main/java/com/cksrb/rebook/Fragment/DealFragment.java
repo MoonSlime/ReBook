@@ -16,8 +16,8 @@ import com.cksrb.rebook.ReBookApplication;
 import java.util.List;
 
 public class DealFragment extends Fragment{
-
     private ReBookApplication app;
+
     private ListView booklist;
     private ListViewAdapterDeal adapter;
 
