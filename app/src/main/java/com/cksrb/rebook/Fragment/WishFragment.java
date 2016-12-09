@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.cksrb.rebook.DataForm.BookData;
+import com.cksrb.rebook.DataForm.WishData;
 import com.cksrb.rebook.ListViewAdapter.ListViewAdapterWish;
 import com.cksrb.rebook.ListViewItem;
 import com.cksrb.rebook.R;
@@ -34,7 +35,7 @@ public class WishFragment extends Fragment{
         booklist = (ListView) view.findViewById(R.id.wishList);
         booklist.setAdapter(adapter);
 
-        searchData(""); // add Data
+       // searchData(""); // add Data
 
         return view;
     }
@@ -60,6 +61,19 @@ public class WishFragment extends Fragment{
     }
 
     public void addData(){
+        adapter = new ListViewAdapterWish(getContext());
+        List<WishData> wishDataList = app.getWishList();
+
+        if(wishDataList!=null){
+
+        }
+
+
+        booklist.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
+
+
         ListViewItem u1 = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_send),
                 "나는 장바구니", "살거냣","","",2);
         adapter.addData(u1); // add list data

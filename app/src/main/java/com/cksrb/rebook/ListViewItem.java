@@ -10,9 +10,13 @@ public class ListViewItem{
     private Drawable bookCoverDrawable;
     private String sellerStr;
     private String bookNameStr;
+
     private String sellerId;
     private String isbn;
     private int type;
+
+    private String userId;
+
 
     public ListViewItem(Drawable bookcover, String bookName, String seller,String sellerId,String isbn,int type) {
         bookCoverDrawable = bookcover;
@@ -21,6 +25,10 @@ public class ListViewItem{
         this.sellerId=sellerId;
         this.isbn=isbn;
         this.type=type;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public Drawable getBookCoverDrawable(){
@@ -43,5 +51,9 @@ public class ListViewItem{
 
     public int getType() {
         return type;
+    }
+
+    public String getUserId() {
+        return userId;
     }
 }
