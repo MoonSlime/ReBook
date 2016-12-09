@@ -2,6 +2,7 @@ package com.cksrb.rebook.ListViewAdapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,6 +70,9 @@ public class ListViewAdapterDeal extends BaseAdapter{
         btn.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
+                Vibrator vibrator = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
+                vibrator.vibrate(1000);
+
                 Intent intent = new Intent(mContext, ChatActivity.class);
                 mContext.startActivity(intent);
             }

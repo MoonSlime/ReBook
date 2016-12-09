@@ -58,14 +58,5 @@ public class DealFragment extends Fragment{
                 adapter.addData(u);
             }
         }
-/*
-        ListViewItem u1 = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_manage),
-                "거래현황 1", "채팅해랏");
-        adapter.addData(u1); // add list data
-
-        u1 = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_manage),
-                "거래현황 2", "채팅해랏");
-        adapter.addData(u1); // add list data
-*/
     }
 }

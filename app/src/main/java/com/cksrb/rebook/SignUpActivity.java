@@ -1,6 +1,8 @@
 package com.cksrb.rebook;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
@@ -39,7 +41,6 @@ public class SignUpActivity extends AppCompatActivity {
         signup_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 boolean signup=true;
 
                 USER user = new USER(signup_Id.getText().toString(),signup_Password.getText().toString()
