@@ -4,43 +4,48 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.cksrb.rebook.DataForm.BookData;
 import com.cksrb.rebook.ListViewAdapter.ListViewAdapter;
 import com.cksrb.rebook.ListViewItem;
 import com.cksrb.rebook.R;
+import com.cksrb.rebook.ReBookApplication;
 import com.cksrb.rebook.RegisterBookActivity;
 
-import java.net.MalformedURLException;
-
 public class UniFragment extends Fragment {
+    ReBookApplication app;
+
     private ListView booklist;
     private ListViewAdapter adapter;
+
+    private Button button_Search ;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_uni, null);
 
-      //  getContext().getApplicationContext();
+        app=(ReBookApplication)  getContext().getApplicationContext();
+
         adapter = new ListViewAdapter(getContext());
         booklist = (ListView) view.findViewById(R.id.uniList);
         booklist.setAdapter(adapter);
 
-        for(int i = 1; i < 10; i++) {
-            try {
-                addData(); // add Data
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
+        button_Search = (Button) view.findViewById(R.id.button_Search);
+        button_Search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                adapter.notifyDataSetChanged();
             }
-        }
+        });
+
+        addData(); // add Data
 
         AdapterView.OnItemClickListener listViewClickListener = new AdapterView.OnItemClickListener() {
             @Override
@@ -50,7 +55,6 @@ public class UniFragment extends Fragment {
         }; // when click list, open new activity(book info)
 
         booklist.setOnItemClickListener(listViewClickListener);
-
         adapter.notifyDataSetChanged();
 
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fabUni);
@@ -65,10 +69,10 @@ public class UniFragment extends Fragment {
         return view;
     }
 
-    public void addData() throws MalformedURLException {
-        BookData bookData = new BookData();
-
-        ListViewItem  u1 = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_gallery), "나는대학서적", "나는교수");
+    public void addData(){
+        ListViewItem u1 = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_gallery),app.getBookList().get(0).getTitle()
+                ,app.getBookList().get(0).getAuthor());
+       // ListViewItem  u1 = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_gallery), "나는대학서적", "나는교수");
         adapter.addData(u1); // add list data
     }
 }

@@ -89,7 +89,7 @@ public class ChatActivity extends AppCompatActivity {
                 ChatData chatData = dataSnapshot.getValue(ChatData.class);  // chatData를 가져오고
 
                 if(cmpstr.equals(chatData.getCmpstr())) {
-                    if (cAdapter.getItemCount() == 30) {
+                    if (cAdapter.getItemCount() == 50) {
                         chatDataList.remove(0);
                     }
                     chatDataList.add(chatData);
