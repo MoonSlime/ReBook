@@ -2,6 +2,7 @@ package com.cksrb.rebook.Fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +16,13 @@ import com.cksrb.rebook.ReBookApplication;
 
 import java.util.List;
 
-public class WishFragment extends Fragment{
+public class WishFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
     private ReBookApplication app;
 
     private ListView booklist;
     private ListViewAdapterWish adapter;
+
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     private static int UNI = 1;
     private static int NORMAL = 0;
@@ -27,6 +30,15 @@ public class WishFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_wish, null);
+
+        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_layout);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setColorSchemeResources(
+                android.R.color.holo_blue_bright,
+                //  android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light
+        );
 
         app=(ReBookApplication)getContext().getApplicationContext();
 
@@ -66,4 +78,11 @@ public class WishFragment extends Fragment{
         */
     }
 
+    @Override
+    public void onRefresh() {
+        addData();
+
+        // 새로고침 완료
+        mSwipeRefreshLayout.setRefreshing(false);
+    }
 }

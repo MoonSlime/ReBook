@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,7 @@ import com.cksrb.rebook.RegisterBookActivity;
 
 import java.util.List;
 
-public class NormalFragment extends Fragment{
+public class NormalFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
     private ReBookApplication app;
 
     private ListView booklist;
@@ -31,12 +32,23 @@ public class NormalFragment extends Fragment{
     private EditText editText_Search;
     private Button button_Search;
 
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+
     private static int NORMAL = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_normal, null);
+
+        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_layout);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setColorSchemeResources(
+                android.R.color.holo_blue_bright,
+                //  android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light
+        );
 
         app=(ReBookApplication)getContext().getApplicationContext();
 
@@ -100,4 +112,11 @@ public class NormalFragment extends Fragment{
         adapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void onRefresh() {
+        searchData(editText_Search.getText().toString());
+
+        // 새로고침 완료
+        mSwipeRefreshLayout.setRefreshing(false);
+    }
 }
