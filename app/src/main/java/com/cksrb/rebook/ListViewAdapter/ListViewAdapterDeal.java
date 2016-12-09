@@ -10,9 +10,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.cksrb.rebook.CancelActivity;
 import com.cksrb.rebook.ChatActivity;
 import com.cksrb.rebook.ListViewItem;
 import com.cksrb.rebook.R;
+import com.cksrb.rebook.ReBookApplication;
 
 import java.util.ArrayList;
 
@@ -21,6 +23,8 @@ import java.util.ArrayList;
  */
 
 public class ListViewAdapterDeal extends BaseAdapter{
+    private ReBookApplication app;
+
     private ListViewItem mListview;
     private Context mContext;
 
@@ -33,6 +37,7 @@ public class ListViewAdapterDeal extends BaseAdapter{
     public ListViewAdapterDeal(Context context){
         super();
         mContext=context;
+        app=(ReBookApplication)mContext.getApplicationContext();
         mList = new ArrayList<ListViewItem>();
     }
 
@@ -77,8 +82,7 @@ public class ListViewAdapterDeal extends BaseAdapter{
         btnCancel.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
-
-                // cancel
+                cancel();
             }
         });
 
@@ -97,5 +101,10 @@ public class ListViewAdapterDeal extends BaseAdapter{
 
     public void addData(ListViewItem bookList){
         mList.add(bookList);
+    }
+
+    public void cancel(){
+        Intent intent = new Intent(mContext, CancelActivity.class);
+        mContext.startActivity(intent);
     }
 }

@@ -38,8 +38,12 @@
         <activity
             android:name=".BookInfo"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity android:name=".RegisterBookActivityUni"
-            android:windowSoftInputMode="stateHidden|adjustPan"></activity>
+        <activity
+            android:name=".RegisterBookActivityUni"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity android:name=".CancelActivity"
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog">
+        </activity>
     </application>
 
 </manifest>
