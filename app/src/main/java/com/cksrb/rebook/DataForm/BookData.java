@@ -16,7 +16,7 @@ public class BookData {
 
     private String customerId;
     private String sellerId;
-    private int sellPrice;
+    private String sellPrice;
 
     private int type;
 
@@ -25,7 +25,7 @@ public class BookData {
         sellerId=null;
     }
 
-    public void setSellPrice(int sellPrice) {
+    public void setSellPrice(String sellPrice) {
         this.sellPrice = sellPrice;
     }
 
@@ -69,6 +69,10 @@ public class BookData {
         this.description = description;
     }
 
+    public void setType(int type) {
+        this.type = type;
+    }
+
     public String getCustomerId() {
         return customerId;
     }
@@ -109,8 +113,11 @@ public class BookData {
         return description;
     }
 
-    public int getSellPrice() {
+    public String getSellPrice() {
         return sellPrice;
     }
 
+    public int getType() {
+        return type;
+    }
 }

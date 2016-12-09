@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cksrb.rebook.DataForm.BookData;
 import com.google.gson.JsonArray;
@@ -26,11 +28,18 @@ public class RegisterBookActivity extends AppCompatActivity {
     private ReBookApplication app;
 
     BookData book;
+    private boolean check=false;
 
     private Button button;
+    private Button button_registerBook;
 
     private TextView textView_title;
     private TextView textView_publisher;
+    private EditText sellprice;
+
+    private int type=1;
+    private static int UNI = 1;
+    private static int NORMAL = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +47,9 @@ public class RegisterBookActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register_book);
 
         app = (ReBookApplication)getApplication();
+
+        //Intent intent = getIntent();
+        //type = intent.getIntExtra("type",0);
 
         book = new BookData();
 
@@ -49,12 +61,27 @@ public class RegisterBookActivity extends AppCompatActivity {
             }
         });
 
+        button_registerBook=(Button)findViewById(R.id.button_RegisterBook);
+        button_registerBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                registerBook();
+            }
+        });
+
         textView_title=(TextView)findViewById(R.id.textView_title);
         textView_publisher=(TextView)findViewById(R.id.textView_publisher);
+        sellprice=(EditText)findViewById(R.id.editTExt_sellPrice);
     }
 
     protected void isbnScan(){
         new IntentIntegrator(this).initiateScan();
+    }
+    protected void registerBook(){
+        if(check){
+            app.databaseReference.child("BookList").child(app.getUserId()+"|"+book.getIsbn()).setValue(book);
+            Toast.makeText(getApplicationContext(),"판매 등록되었습니다.",Toast.LENGTH_SHORT);
+        }
     }
 
     protected void onActivityResult(int requestCode,int resultCode,Intent data) {
@@ -117,7 +144,7 @@ public class RegisterBookActivity extends AppCompatActivity {
                 br.close();
                 str=response.toString();
             } catch (Exception e) {
-                str=""+e;
+                str="NULL";
             }
 
             return str;
@@ -125,6 +152,8 @@ public class RegisterBookActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
+            if(result.equals("NULL"))return ;
+
             JsonObject jsonObject = new JsonParser().parse(result).getAsJsonObject();
             JsonArray jsonArray = jsonObject.getAsJsonArray("items");
 
@@ -155,17 +184,20 @@ public class RegisterBookActivity extends AppCompatActivity {
 
             book.setSellerId(app.getUserId());
 
+            book.setSellPrice(sellprice.getText().toString());
+
+            if(type==1)book.setType(UNI);
+            else if(type==2)book.setType(NORMAL);
+
             List<BookData> bookList = app.getBookList();
             int i;
-            boolean check=true;
+            check=true;
             for(i=bookList.size();i>0;--i){
                 if(bookList.get(i-1).getIsbn().equals(book.getIsbn())
                         &&bookList.get(i-1).getSellerId().equals(book.getSellerId())){
                     check=false;
                 }
             }
-
-            if(check)app.databaseReference.child("BookList").child(app.getUserId()+"|"+book.getIsbn()).setValue(book);
         }
 
         @Override
