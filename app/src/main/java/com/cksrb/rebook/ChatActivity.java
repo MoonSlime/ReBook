@@ -46,6 +46,10 @@ public class ChatActivity extends AppCompatActivity {
         app=(ReBookApplication)getApplication();
         //othersId 읽어오기
 
+        //Intent intent = getIntent();
+        //othersId = intent.getStringExtra("othersId");
+
+
         if((app.cnt++)%2==0)
             othersId="ID 1";
         else othersId="ID 2";

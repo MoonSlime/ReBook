@@ -68,8 +68,9 @@ public class ListViewAdapterDeal extends BaseAdapter{
         btn.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(mContext, ChatActivity.class);
                 Intent intent = new Intent(mContext, RegisterBookActivity.class);
+                //Intent intent = new Intent(mContext, ChatActivity.class);
+                //intent.putExtra("othersId","ID1");
                 mContext.startActivity(intent);
             }
         });
