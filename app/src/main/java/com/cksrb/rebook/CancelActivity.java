@@ -15,7 +15,5 @@ public class CancelActivity extends Activity {
         setContentView(R.layout.activity_cancel);
 
         app = (ReBookApplication)getApplication();
-
-        
     }
 }

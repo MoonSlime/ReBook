@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cksrb.rebook.CancelActivity;
 import com.cksrb.rebook.ChatActivity;
@@ -75,9 +76,9 @@ public class ListViewAdapterDeal extends BaseAdapter{
         btnBuy.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
-                //startChat();
-                Intent intent = new Intent(mContext, ChatActivity.class);
-                mContext.startActivity(intent);
+                startChat();
+                //Intent intent = new Intent(mContext, ChatActivity.class);
+                //mContext.startActivity(intent);
             }
         });
 
@@ -106,7 +107,59 @@ public class ListViewAdapterDeal extends BaseAdapter{
         mList.add(bookList);
     }
 
+    public void startChat(){
+        String othersId=null;
+        if(app.getUserId().equals(mListview.getSellerId())){
+            List<BookData> bookDataList=null;
+            String type=null;
+            if(mListview.getType()==1) {
+                type="Uni";
+                bookDataList = app.getBookList();
+            }
+            else if(mListview.getType()==0){
+                type="Normal";
+                bookDataList = app.getBookList_normal();
+            }
+
+            int i=bookDataList.size();
+            for(;i>0;--i){
+                if(bookDataList.get(i-1).getSellerId().equals(mListview.getSellerId())
+                        &&bookDataList.get(i-1).getIsbn().equals(mListview.getIsbn())){
+                    othersId=bookDataList.get(i-1).getCustomerId();
+                }
+            }
+        }
+        else othersId=mListview.getSellerId();
+
+        Intent intent = new Intent(mContext,ChatActivity.class);
+        intent.putExtra("othersId",othersId);
+        mContext.startActivity(intent);
+    }
+
     public void onClick_cancel(){
+        String othersId=null;
+        if(app.getUserId().equals(mListview.getSellerId())){
+            List<BookData> bookDataList=null;
+            String type=null;
+            if(mListview.getType()==1) {
+                type="Uni";
+                bookDataList = app.getBookList();
+            }
+            else if(mListview.getType()==0){
+                type="Normal";
+                bookDataList = app.getBookList_normal();
+            }
+
+            int i=bookDataList.size();
+            for(;i>0;--i){
+                if(bookDataList.get(i-1).getSellerId().equals(mListview.getSellerId())
+                        &&bookDataList.get(i-1).getIsbn().equals(mListview.getIsbn())){
+                    othersId=bookDataList.get(i-1).getCustomerId();
+                }
+            }
+        }
+        else othersId=mListview.getSellerId();
+
         List<BookData> bookDataList=null;
         String type=null;
         if(mListview.getType()==1) {
@@ -126,12 +179,19 @@ public class ListViewAdapterDeal extends BaseAdapter{
                 app.databaseReference.child("BookList").child(type)
                         .child(mListview.getSellerId()+"|"+mListview.getIsbn()).child("customerId").setValue(null);
 
+                String cmpstr=null;
+                if(app.getUserId().compareTo(othersId)>0)cmpstr=othersId+"|"+app.getUserId();
+                else cmpstr=app.getUserId()+"|"+othersId;
+                app.databaseReference.child("ChatData").child(cmpstr).setValue(null);
+
                 if(type.equals("Uni")){
                     app.getBookList().get(i-1).setCustomerId(null);
                 }
                 else{
                     app.getBookList_normal().get(i-1).setCustomerId(null);
                 }
+                Toast.makeText(mContext,"거래가 취소되었습니다.",Toast.LENGTH_SHORT).show();
+                break;
             }
         }
     }
