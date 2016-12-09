@@ -83,7 +83,7 @@ public class BookInfo extends AppCompatActivity {
 
         int i = wishList.size();
         for(;i>0;--i){
-            if(wishList.get(i-1).getSellerId().equals(sellerId)&&!wishList.get(i-1).getIsbn().equals(isbn)){
+            if(wishList.get(i-1).getSellerId().equals(sellerId)&&wishList.get(i-1).getIsbn().equals(isbn)){
                 check=false;
                 break;
             }
