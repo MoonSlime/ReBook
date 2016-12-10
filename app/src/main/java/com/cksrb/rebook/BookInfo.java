@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,13 +18,14 @@ public class BookInfo extends AppCompatActivity {
 
     private String isbn;
     private String sellerId;
+    private String bookcover;
     private String title;
     private String publisher;
     private int price;
     private String sellerPrice;
     private int type;
 
-
+    private ImageView bookcoverInfo;
     private TextView titleInfo;
     private TextView publisherInfo;
     private TextView priceInfo;
@@ -47,6 +49,9 @@ public class BookInfo extends AppCompatActivity {
         isbn = intent.getStringExtra("isbn");
         sellerId = intent.getStringExtra("sellerId");
         type = intent.getIntExtra("type",1);
+
+        bookcoverInfo = (ImageView)findViewById(R.id.imageInfo);
+        bookcoverInfo.setImageDrawable();
 
         title=intent.getStringExtra("title");
         titleInfo = (TextView)findViewById(R.id.titleInfo);
