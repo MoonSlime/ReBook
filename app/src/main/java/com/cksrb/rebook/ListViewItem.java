@@ -17,6 +17,10 @@ public class ListViewItem{
 
     private String userId;
 
+    private String publisherStr;
+    private int priceInt;
+    private String sellerPriceStr;
+    private String professorStr;
 
     public ListViewItem(Drawable bookcover, String bookName, String seller,String sellerId,String isbn,int type) {
         bookCoverDrawable = bookcover;
@@ -25,6 +29,31 @@ public class ListViewItem{
         this.sellerId=sellerId;
         this.isbn=isbn;
         this.type=type;
+    }
+
+    public ListViewItem(Drawable bookcover, String bookName, String seller,String sellerId,String isbn,int type, String publisher, int price, String sellerPrice) {
+        bookCoverDrawable = bookcover;
+        bookNameStr = bookName;
+        sellerStr = seller;
+        this.sellerId=sellerId;
+        this.isbn=isbn;
+        this.type=type;
+        publisherStr = publisher;
+        priceInt = price;
+        sellerPriceStr = sellerPrice;
+    }
+
+    public ListViewItem(Drawable bookcover, String bookName, String seller,String sellerId,String isbn,int type, String publisher, int price, String sellerPrice, String professor) {
+        bookCoverDrawable = bookcover;
+        bookNameStr = bookName;
+        sellerStr = seller;
+        this.sellerId=sellerId;
+        this.isbn=isbn;
+        this.type=type;
+        publisherStr = publisher;
+        priceInt = price;
+        sellerPriceStr = sellerPrice;
+        professorStr = professor;
     }
 
     public void setUserId(String userId) {
@@ -56,4 +85,12 @@ public class ListViewItem{
     public String getUserId() {
         return userId;
     }
+
+    public String getPublisher(){return publisherStr;}
+
+    public int getPriceInt(){ return priceInt;}
+
+    public String getSellerPriceStr(){ return sellerPriceStr;}
+
+    public String getProfessorStr(){ return professorStr;}
 }

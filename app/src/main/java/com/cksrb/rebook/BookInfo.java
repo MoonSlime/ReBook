@@ -18,10 +18,17 @@ public class BookInfo extends AppCompatActivity {
     private String isbn;
     private String sellerId;
     private String title;
+    private String publisher;
+    private int price;
+    private String sellerPrice;
     private int type;
 
 
     private TextView titleInfo;
+    private TextView publisherInfo;
+    private TextView priceInfo;
+    private TextView sellerPriceInfo;
+
     private Button buyBook;
     private Button wishBook;
 
@@ -45,6 +52,19 @@ public class BookInfo extends AppCompatActivity {
         titleInfo = (TextView)findViewById(R.id.titleInfo);
         titleInfo.setText(title);
         titleInfo.setSelected(true);
+
+        publisher=intent.getStringExtra("publisher");
+        publisherInfo=(TextView)findViewById(R.id.publisherInfo);
+        publisherInfo.setText(publisher);
+
+        price = intent.getIntExtra("price",1);
+        priceInfo=(TextView)findViewById(R.id.priceInfo);
+        priceInfo.setText(""+price);
+
+        sellerPrice = intent.getStringExtra("sellerPrice");
+        sellerPriceInfo=(TextView)findViewById(R.id.sellPriceInfo);
+        sellerPriceInfo.setText(sellerPrice);
+
 
         wishBook=(Button)findViewById(R.id.button_WishBook);
         wishBook.setOnClickListener(new View.OnClickListener() {

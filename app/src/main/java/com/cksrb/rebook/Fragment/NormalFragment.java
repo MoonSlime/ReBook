@@ -75,6 +75,9 @@ public class NormalFragment extends Fragment implements SwipeRefreshLayout.OnRef
                 intent.putExtra("sellerId",((ListViewItem)adapter.getItem(position)).getSellerId());
                 intent.putExtra("title",((ListViewItem)adapter.getItem(position)).getBookName());
                 intent.putExtra("type",((ListViewItem)adapter.getItem(position)).getType());
+                intent.putExtra("publisher",((ListViewItem) adapter.getItem(position)).getPublisher());
+                intent.putExtra("price",((ListViewItem) adapter.getItem(position)).getPriceInt());
+                intent.putExtra("sellerPrice",((ListViewItem) adapter.getItem(position)).getSellerPriceStr());
                 startActivity(intent);
             }
         }; // when click list, open new activity(book info)
@@ -102,7 +105,8 @@ public class NormalFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
                 if (bookDataList.get(i - 1).search(search)&&bookDataList.get(i-1).getCustomerId()==null) {
                     ListViewItem u1 = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_gallery), bookDataList.get(i - 1).getTitle()
-                            , bookDataList.get(i - 1).getAuthor(), bookDataList.get(i - 1).getSellerId(), bookDataList.get(i - 1).getIsbn(),NORMAL);
+                            , bookDataList.get(i - 1).getAuthor(), bookDataList.get(i - 1).getSellerId(), bookDataList.get(i - 1).getIsbn(),NORMAL
+                    ,bookDataList.get(i-1).getPublisher(), bookDataList.get(i-1).getPrice(), bookDataList.get(i-1).getSellPrice());
                     adapter.addData(u1); // add list data
                 }
             }
