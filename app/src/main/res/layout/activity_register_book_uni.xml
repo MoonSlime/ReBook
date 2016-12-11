@@ -58,22 +58,47 @@
                 android:layout_weight="1"
                 android:text="출판사"
                 android:padding="5dp"/>
-            <TextView
-                android:id="@+id/textView_price_uni"
+            
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="정가"
-                android:padding="5dp"/>
+                android:layout_weight="1">
 
-            <EditText
-                android:id="@+id/editTExt_sellPrice_uni"
+                <TextView
+                    android:id="@+id/textView_price_uni"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:text="정가"
+                    android:padding="5dp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="원"/>
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                android:hint="판매가"
-                android:digits="1234567890"
-                android:padding="5dp"/>
+                android:layout_weight="1">
+
+                <EditText
+                    android:id="@+id/editTExt_sellPrice_uni"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:hint="판매가"
+                    android:digits="1234567890"
+                    android:padding="5dp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="원"/>
+            </LinearLayout>
 
             <EditText
                 android:id="@+id/editTExt_professor_uni"
