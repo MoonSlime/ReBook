@@ -50,7 +50,8 @@ public class ChatActivity extends AppCompatActivity {
         //Intent intent = getIntent();
         //othersId = intent.getStringExtra("othersId");
 
-        if(app.getUserId().compareTo(othersId)>0)cmpstr=othersId+"|"+app.getUserId();
+        if(othersId==null)cmpstr = null;
+        else if(app.getUserId().compareTo(othersId)>0)cmpstr=othersId+"|"+app.getUserId();
         else cmpstr=app.getUserId()+"|"+othersId;
 
          //

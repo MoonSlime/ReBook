@@ -32,6 +32,7 @@ public class ListViewAdapterWish extends BaseAdapter {
     private TextView bookNameStr;
     private TextView sellerStr;
 
+    private Button wishBuyBtn;
     private Button wishCancelBtn;
 
     private ArrayList<ListViewItem> mList;
@@ -73,6 +74,14 @@ public class ListViewAdapterWish extends BaseAdapter {
         bookCoverIcon = (ImageView) view.findViewById(R.id.wishImageView);
         bookNameStr = (TextView) view.findViewById(R.id.wishBookNameTextView);
         sellerStr = (TextView) view.findViewById(R.id.wishSellerTextView);
+
+        wishBuyBtn = (Button)view.findViewById(R.id.wishBuyBtn);
+        wishBuyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startBuy();
+            }
+        });
 
         wishCancelBtn = (Button) view.findViewById(R.id.wishCancelBtn);
         wishCancelBtn.setOnClickListener(new View.OnClickListener() {
@@ -116,6 +125,19 @@ public class ListViewAdapterWish extends BaseAdapter {
 
     public void addData(ListViewItem bookList){
         mList.add(bookList);
+    }
+
+    public void startBuy(){
+        String type ="Normal";
+        if(mListview.getType()==1)type="Uni";
+
+        String str=mListview.getSellerId()+"|"+mListview.getIsbn();
+
+        app.databaseReference.child("BookList").child(type).child(str).child("customerId").setValue(app.getUserId());
+
+        String cmpstr=app.getUserId()+"|"+mListview.getIsbn();
+        app.databaseReference.child("WishList").child(cmpstr).setValue(null);
+        Toast.makeText(mContext,"거래현황에 추가되었습니다.",Toast.LENGTH_SHORT).show();
     }
 
     public void wishCancel(){
