@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,11 +18,19 @@ public class BookInfo extends AppCompatActivity {
 
     private String isbn;
     private String sellerId;
+    private String bookcover;
     private String title;
+    private String publisher;
+    private int price;
+    private String sellerPrice;
     private int type;
 
-
+    private ImageView bookcoverInfo;
     private TextView titleInfo;
+    private TextView publisherInfo;
+    private TextView priceInfo;
+    private TextView sellerPriceInfo;
+
     private Button buyBook;
     private Button wishBook;
 
@@ -41,10 +50,26 @@ public class BookInfo extends AppCompatActivity {
         sellerId = intent.getStringExtra("sellerId");
         type = intent.getIntExtra("type",1);
 
+        bookcoverInfo = (ImageView)findViewById(R.id.imageInfo);
+        bookcoverInfo.setImageDrawable();
+
         title=intent.getStringExtra("title");
         titleInfo = (TextView)findViewById(R.id.titleInfo);
         titleInfo.setText(title);
         titleInfo.setSelected(true);
+
+        publisher=intent.getStringExtra("publisher");
+        publisherInfo=(TextView)findViewById(R.id.publisherInfo);
+        publisherInfo.setText(publisher);
+
+        price = intent.getIntExtra("price",1);
+        priceInfo=(TextView)findViewById(R.id.priceInfo);
+        priceInfo.setText(""+price);
+
+        sellerPrice = intent.getStringExtra("sellerPrice");
+        sellerPriceInfo=(TextView)findViewById(R.id.sellPriceInfo);
+        sellerPriceInfo.setText(sellerPrice);
+
 
         wishBook=(Button)findViewById(R.id.button_WishBook);
         wishBook.setOnClickListener(new View.OnClickListener() {

@@ -18,10 +18,20 @@ public class BookInfoUni extends AppCompatActivity {
     private String isbn;
     private String sellerId;
     private String title;
+    private String publisher;
+    private int price;
+    private String sellerPrice;
+    private String professor;
+
     private int type;
 
 
     private TextView titleInfo;
+    private TextView publisherInfo;
+    private TextView priceInfo;
+    private TextView sellerPriceInfo;
+    private TextView professorInfo;
+
     private Button buyBook;
     private Button wishBook;
 
@@ -44,7 +54,23 @@ public class BookInfoUni extends AppCompatActivity {
         title=intent.getStringExtra("title");
         titleInfo = (TextView)findViewById(R.id.titleInfoUni);
         titleInfo.setText(title);
-        titleInfo.setSelected(true);
+        titleInfo.setSelected(true); // 글씨 흐르게
+
+        publisher=intent.getStringExtra("publisher");
+        publisherInfo=(TextView)findViewById(R.id.publisherInfoUni);
+        publisherInfo.setText(publisher);
+
+        price = intent.getIntExtra("price",1);
+        priceInfo=(TextView)findViewById(R.id.priceInfoUni);
+        priceInfo.setText(""+price);
+
+        sellerPrice = intent.getStringExtra("sellerPrice");
+        sellerPriceInfo=(TextView)findViewById(R.id.sellPriceInfoUni);
+        sellerPriceInfo.setText(sellerPrice);
+
+        professor = intent.getStringExtra("professor");
+        professorInfo=(TextView)findViewById(R.id.sellProfessorInfoUni);
+        professorInfo.setText(professor);
 
         wishBook=(Button)findViewById(R.id.button_WishBookUni);
         wishBook.setOnClickListener(new View.OnClickListener() {
