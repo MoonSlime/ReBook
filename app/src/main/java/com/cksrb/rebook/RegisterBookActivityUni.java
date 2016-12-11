@@ -35,8 +35,10 @@ public class RegisterBookActivityUni extends AppCompatActivity {
 
     private TextView textView_title;
     private TextView textView_publisher;
+    private TextView textView_price_uni;
     private EditText sellprice;
     private EditText professor;
+    private EditText etc_uni;
 
 
     private int type=1;
@@ -73,8 +75,10 @@ public class RegisterBookActivityUni extends AppCompatActivity {
 
         textView_title=(TextView)findViewById(R.id.textView_title_uni);
         textView_publisher=(TextView)findViewById(R.id.textView_publisher_uni);
+        textView_price_uni=(TextView)findViewById(R.id.textView_price_uni);
         sellprice=(EditText)findViewById(R.id.editTExt_sellPrice_uni);
         professor=(EditText)findViewById(R.id.editTExt_professor_uni);
+        etc_uni=(EditText)findViewById(R.id.editText_etc_uni);
     }
 
     protected void isbnScan(){
@@ -82,6 +86,10 @@ public class RegisterBookActivityUni extends AppCompatActivity {
     }
     protected void registerBook(){
         if(check){
+            book.setSellPrice(sellprice.getText().toString());
+            book.setProfessor(professor.getText().toString());
+            book.setEtc(etc_uni.getText().toString());
+
             app.databaseReference.child("BookList").child("Uni").child(app.getUserId()+"|"+book.getIsbn()).setValue(book);
             Toast.makeText(getApplicationContext(),"판매 등록되었습니다.",Toast.LENGTH_SHORT).show();
             finish();
@@ -179,6 +187,7 @@ public class RegisterBookActivityUni extends AppCompatActivity {
 
             jsonPrimitive = jsonObject_item.getAsJsonPrimitive("price");
             book.setPrice(jsonPrimitive.getAsInt());
+            textView_price_uni.setText(book.getPrice()+"");
 
             jsonPrimitive = jsonObject_item.getAsJsonPrimitive("publisher");
             book.setPublisher(jsonPrimitive.getAsString());
@@ -189,9 +198,6 @@ public class RegisterBookActivityUni extends AppCompatActivity {
 
             book.setSellerId(app.getUserId());
 
-            book.setSellPrice(sellprice.getText().toString());
-
-            book.setProfessor(professor.getText().toString());
 
             if(type==1)book.setType(UNI);
             else if(type==2)book.setType(NORMAL);

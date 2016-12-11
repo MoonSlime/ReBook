@@ -51,7 +51,7 @@ public class BookInfo extends AppCompatActivity {
         type = intent.getIntExtra("type",1);
 
         bookcoverInfo = (ImageView)findViewById(R.id.imageInfo);
-        bookcoverInfo.setImageDrawable();
+       // bookcoverInfo.setImageDrawable();
 
         title=intent.getStringExtra("title");
         titleInfo = (TextView)findViewById(R.id.titleInfo);
