@@ -64,6 +64,7 @@
                 android:layout_weight="1">
 
                 <TextView
+                    android:id="@+id/textView_price"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="4"
@@ -83,7 +84,7 @@
                 android:layout_weight="1">
 
                 <EditText
-                    android:id="@+id/editTExt_sellPrice"
+                    android:id="@+id/editText_sellPrice"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="4"
@@ -106,6 +107,7 @@
         android:layout_weight="1"
         android:padding="5dp">
         <EditText
+            android:id="@+id/editText_etc"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="기타 내용"/>

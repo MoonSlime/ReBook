@@ -47,14 +47,15 @@ public class DealFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
         addData();
 
-        booklist.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+
 
         return view;
     }
 
     public void addData(){
+        adapter = new ListViewAdapterDeal(getContext());
         List<BookData> bookDataList=null;
+
         for(int t=0;t<2;++t) {
             if(t==0)bookDataList = app.getBookList();
             else if(t==1)bookDataList = app.getBookList_normal();
@@ -89,6 +90,8 @@ public class DealFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
             }
         }
+        booklist.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
     @Override
