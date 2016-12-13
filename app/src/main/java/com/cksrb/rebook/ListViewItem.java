@@ -20,7 +20,8 @@ public class ListViewItem{
     private String publisherStr;
     private int priceInt;
     private String sellerPriceStr;
-    private String professorStr;
+    private String classStr;
+    private String etcStr;
 
     public ListViewItem(Drawable bookcover, String bookName, String seller,String sellerId,String isbn,int type) {
         bookCoverDrawable = bookcover;
@@ -31,7 +32,7 @@ public class ListViewItem{
         this.type=type;
     }
 
-    public ListViewItem(Drawable bookcover, String bookName, String seller,String sellerId,String isbn,int type, String publisher, int price, String sellerPrice) {
+    public ListViewItem(Drawable bookcover, String bookName, String seller,String sellerId,String isbn,int type, String publisher, int price, String sellerPrice, String etc) {
         bookCoverDrawable = bookcover;
         bookNameStr = bookName;
         sellerStr = seller;
@@ -41,9 +42,10 @@ public class ListViewItem{
         publisherStr = publisher;
         priceInt = price;
         sellerPriceStr = sellerPrice;
+        etcStr = etc;
     }
 
-    public ListViewItem(Drawable bookcover, String bookName, String seller,String sellerId,String isbn,int type, String publisher, int price, String sellerPrice, String professor) {
+    public ListViewItem(Drawable bookcover, String bookName, String seller,String sellerId,String isbn,int type, String publisher, int price, String sellerPrice, String className, String etc) {
         bookCoverDrawable = bookcover;
         bookNameStr = bookName;
         sellerStr = seller;
@@ -53,7 +55,8 @@ public class ListViewItem{
         publisherStr = publisher;
         priceInt = price;
         sellerPriceStr = sellerPrice;
-        professorStr = professor;
+        classStr = className;
+        etcStr = etc;
     }
 
     public void setUserId(String userId) {
@@ -92,5 +95,7 @@ public class ListViewItem{
 
     public String getSellerPriceStr(){ return sellerPriceStr;}
 
-    public String getProfessorStr(){ return professorStr;}
+    public String getClassStr(){ return classStr; }
+
+    public String getEtcStr() { return etcStr; }
 }
