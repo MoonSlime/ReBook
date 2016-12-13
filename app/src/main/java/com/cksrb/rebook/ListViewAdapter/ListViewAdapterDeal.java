@@ -87,11 +87,16 @@ public class ListViewAdapterDeal extends BaseAdapter{
             }
         });
 
-        Button btnCancel = (Button) view.findViewById(R.id.dealCancelBtn);
+        final Button btnCancel = (Button) view.findViewById(R.id.dealCancelBtn);
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onClick_cancel();
+                if(btnCancel.getText().equals("판매 취소")){
+                    cancel_sell();
+                }
+                else{
+                    onClick_cancel();
+                }
             }
         });
 
@@ -103,6 +108,11 @@ public class ListViewAdapterDeal extends BaseAdapter{
             }
             bookNameStr.setText(mListview.getBookName());
             sellerStr.setText(mListview.getSeller());
+
+            if(mListview.getSellerId().equals(app.getUserId())){
+                if(sellerStr.getText().toString().equals("구매자 : 없음"))
+                    btnCancel.setText("판매 취소");
+            }
         }
 
         return view;
@@ -136,10 +146,34 @@ public class ListViewAdapterDeal extends BaseAdapter{
         }
         else othersId=mListview.getSellerId();
 
-        Intent intent = new Intent(mContext,ChatActivity.class);
-        intent.putExtra("othersId",othersId);
-        mContext.startActivity(intent);
+        if(othersId!=null) {
+            Intent intent = new Intent(mContext, ChatActivity.class);
+            intent.putExtra("othersId", othersId);
+            mContext.startActivity(intent);
+        }
+        else{
+            Toast.makeText(mContext,"구매자가 없어 채팅을 할수 없습니다.",Toast.LENGTH_SHORT).show();
+        }
     }
+
+    public void cancel_sell(){
+        List<BookData> bookDataList=null;
+        String type=null;
+        if(mListview.getType()==1) {
+            type="Uni";
+            bookDataList = app.getBookList();
+        }
+        else if(mListview.getType()==0){
+            type="Normal";
+            bookDataList = app.getBookList_normal();
+        }
+
+        app.databaseReference.child("BookList").child(type)
+                .child(mListview.getSellerId()+"|"+mListview.getIsbn()).setValue(null);
+
+        Toast.makeText(mContext,"판매를 취소하였습니다.",Toast.LENGTH_SHORT).show();
+    }
+
 
     public void onClick_cancel(){
         String othersId=null;
