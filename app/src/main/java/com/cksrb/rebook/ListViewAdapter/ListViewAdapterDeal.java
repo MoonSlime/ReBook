@@ -79,9 +79,15 @@ public class ListViewAdapterDeal extends BaseAdapter{
             }
         });
 
+        Button btnOk = (Button) view.findViewById(R.id.dealOkBtn);
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 거래완료
+            }
+        });
+
         final Button btnCancel = (Button) view.findViewById(R.id.dealCancelBtn);
-
-
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

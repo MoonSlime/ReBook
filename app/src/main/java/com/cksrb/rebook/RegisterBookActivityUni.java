@@ -37,7 +37,7 @@ public class RegisterBookActivityUni extends AppCompatActivity {
     private TextView textView_publisher;
     private TextView textView_price_uni;
     private EditText sellprice;
-    private EditText professor;
+    private EditText className;
     private EditText etc_uni;
 
 
@@ -77,7 +77,7 @@ public class RegisterBookActivityUni extends AppCompatActivity {
         textView_publisher=(TextView)findViewById(R.id.textView_publisher_uni);
         textView_price_uni=(TextView)findViewById(R.id.textView_price_uni);
         sellprice=(EditText)findViewById(R.id.editTExt_sellPrice_uni);
-        professor=(EditText)findViewById(R.id.editTExt_professor_uni);
+        className=(EditText)findViewById(R.id.editTExt_className_uni);
         etc_uni=(EditText)findViewById(R.id.editText_etc_uni);
     }
 
@@ -87,7 +87,7 @@ public class RegisterBookActivityUni extends AppCompatActivity {
     protected void registerBook(){
         if(check){
             book.setSellPrice(sellprice.getText().toString());
-            book.setProfessor(professor.getText().toString());
+            book.setProfessor(className.getText().toString());
             book.setEtc(etc_uni.getText().toString());
 
             app.databaseReference.child("BookList").child("Uni").child(app.getUserId()+"|"+book.getIsbn()).setValue(book);

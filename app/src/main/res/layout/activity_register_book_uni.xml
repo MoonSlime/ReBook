@@ -58,7 +58,7 @@
                 android:layout_weight="1"
                 android:text="출판사"
                 android:padding="5dp"/>
-            
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -101,7 +101,7 @@
             </LinearLayout>
 
             <EditText
-                android:id="@+id/editTExt_professor_uni"
+                android:id="@+id/editTExt_className_uni"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
