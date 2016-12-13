@@ -70,7 +70,7 @@ public class BookInfoUni extends AppCompatActivity {
         sellerPriceInfo=(TextView)findViewById(R.id.sellPriceInfoUni);
         sellerPriceInfo.setText(sellerPrice);
 
-        className = intent.getStringExtra("class");
+        className = intent.getStringExtra("className");
         classNameInfo =(TextView)findViewById(R.id.classNameInfoUni);
         classNameInfo.setText(className);
 
