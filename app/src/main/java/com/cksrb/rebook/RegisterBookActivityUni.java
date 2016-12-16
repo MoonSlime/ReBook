@@ -1,12 +1,16 @@
 package com.cksrb.rebook;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +23,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -39,7 +44,9 @@ public class RegisterBookActivityUni extends AppCompatActivity {
     private EditText sellprice;
     private EditText className;
     private EditText etc_uni;
+    private ImageView bookCover;
 
+    private Bitmap bitmap;
 
     private int type=1;
     private static int UNI = 1;
@@ -79,6 +86,7 @@ public class RegisterBookActivityUni extends AppCompatActivity {
         sellprice=(EditText)findViewById(R.id.editTExt_sellPrice_uni);
         className=(EditText)findViewById(R.id.editTExt_className_uni);
         etc_uni=(EditText)findViewById(R.id.editText_etc_uni);
+        bookCover=(ImageView)findViewById(R.id.imageviewUni);
     }
 
     protected void isbnScan(){
@@ -181,6 +189,25 @@ public class RegisterBookActivityUni extends AppCompatActivity {
 
             jsonPrimitive = jsonObject_item.getAsJsonPrimitive("image");
             book.setImage_url(jsonPrimitive.getAsString());
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try{
+                        bitmap = getBitmap(book.getImage_url());
+                    }catch (Exception e){
+
+                    }finally {
+                        if(bitmap != null){
+                            runOnUiThread(new Runnable() {
+                                @SuppressLint("NewApi")
+                                public void run() {
+                                    bookCover.setImageBitmap(bitmap);
+                                }
+                            });
+                        }
+                    }
+                }
+            }).start();
 
             jsonPrimitive = jsonObject_item.getAsJsonPrimitive("author");
             book.setAuthor(jsonPrimitive.getAsString());
@@ -220,5 +247,30 @@ public class RegisterBookActivityUni extends AppCompatActivity {
             super.onCancelled();
         }
 
+    }
+
+    public Bitmap getBitmap(String url) {
+        URL imgUrl = null;
+        HttpURLConnection connection = null;
+        InputStream is = null;
+
+        Bitmap retBitmap = null;
+
+        try {
+            imgUrl = new URL(url);
+            connection = (HttpURLConnection) imgUrl.openConnection();
+            connection.setDoInput(true); //url로 input받는 flag 허용
+            connection.connect(); //연결
+            is = connection.getInputStream(); // get inputstream
+            retBitmap = BitmapFactory.decodeStream(is);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (connection != null) {
+                connection.disconnect();
+            }
+            return retBitmap;
+        }
     }
 }

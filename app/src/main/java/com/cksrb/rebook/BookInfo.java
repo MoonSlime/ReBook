@@ -66,8 +66,27 @@ public class BookInfo extends AppCompatActivity {
         sellerId = intent.getStringExtra("sellerId");
         type = intent.getIntExtra("type",1);
 
-        bookcover = intent.getStringExtra("bookCover");
+        bookcover = intent.getStringExtra("url");
         bookcoverInfo = (ImageView)findViewById(R.id.imageInfo); // have to modify
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    bitmap = getBitmap(bookcover);
+                }catch (Exception e){
+
+                }finally {
+                    if(bitmap != null){
+                        runOnUiThread(new Runnable() {
+                            @SuppressLint("NewApi")
+                            public void run() {
+                                bookcoverInfo.setImageBitmap(bitmap);
+                            }
+                        });
+                    }
+                }
+            }
+        }).start();
 
         title=intent.getStringExtra("title");
         titleInfo = (TextView)findViewById(R.id.titleInfo);

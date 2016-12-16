@@ -1,15 +1,23 @@
 package com.cksrb.rebook;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cksrb.rebook.DataForm.WishData;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
 
 public class BookInfoUni extends AppCompatActivity {
@@ -23,6 +31,7 @@ public class BookInfoUni extends AppCompatActivity {
     private String sellerPrice;
     private String className;
     private String etc;
+    private String url;
 
     private int type;
 
@@ -33,6 +42,9 @@ public class BookInfoUni extends AppCompatActivity {
     private TextView sellerPriceInfo;
     private TextView classNameInfo;
     private TextView etcInfo;
+    private ImageView imageUrl;
+
+    private Bitmap bitmap;
 
     private Button buyBook;
     private Button wishBook;
@@ -47,7 +59,7 @@ public class BookInfoUni extends AppCompatActivity {
 
         app=(ReBookApplication)getApplication();
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
 
         isbn = intent.getStringExtra("isbn");
         sellerId = intent.getStringExtra("sellerId");
@@ -73,10 +85,33 @@ public class BookInfoUni extends AppCompatActivity {
         className = intent.getStringExtra("className");
         classNameInfo =(TextView)findViewById(R.id.classNameInfoUni);
         classNameInfo.setText(className);
+        classNameInfo.setSelected(true); // 글씨 흐르게
 
         etc = intent.getStringExtra("etc");
         etcInfo = (TextView) findViewById(R.id.etcTextUni);
         etcInfo.setText(etc);
+
+        url = intent.getStringExtra("url");
+        imageUrl = (ImageView)findViewById(R.id.imageInfoUni);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    bitmap = getBitmap(url);
+                }catch (Exception e){
+
+                }finally {
+                    if(bitmap != null){
+                        runOnUiThread(new Runnable() {
+                            @SuppressLint("NewApi")
+                            public void run() {
+                                imageUrl.setImageBitmap(bitmap);
+                            }
+                        });
+                    }
+                }
+            }
+        }).start();
 
         wishBook=(Button)findViewById(R.id.button_WishBookUni);
         wishBook.setOnClickListener(new View.OnClickListener() {
@@ -128,5 +163,30 @@ public class BookInfoUni extends AppCompatActivity {
         }
         else Toast.makeText(getApplicationContext(),"장바구니에 추가할수없습니다.",Toast.LENGTH_SHORT);
 
+    }
+
+    public Bitmap getBitmap(String url) {
+        URL imgUrl = null;
+        HttpURLConnection connection = null;
+        InputStream is = null;
+
+        Bitmap retBitmap = null;
+
+        try {
+            imgUrl = new URL(url);
+            connection = (HttpURLConnection) imgUrl.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            is = connection.getInputStream();
+            retBitmap = BitmapFactory.decodeStream(is);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (connection != null) {
+                connection.disconnect();
+            }
+            return retBitmap;
+        }
     }
 }

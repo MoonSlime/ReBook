@@ -1,6 +1,11 @@
 package com.cksrb.rebook.ListViewAdapter;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,9 +13,13 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.cksrb.rebook.DownLoadImageTask;
 import com.cksrb.rebook.ListViewItem;
 import com.cksrb.rebook.R;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -64,20 +73,22 @@ public class ListViewAdapter extends BaseAdapter{
 
         mListview = (ListViewItem) getItem(position);
 
-        if(mListview != null){
-            if(mListview.getBookCoverDrawable() != null){
-                bookCoverIcon.setImageDrawable(mListview.getBookCoverDrawable());
+        if(mListview != null) {
+            new DownLoadImageTask(bookCoverIcon).execute(mListview.getBookCoverUrl());
+
+            int type = mListview.getType();
+            if(type == 1) {
+                bookNameStr.setText((mListview.getBookName())+"("+(mListview.getClassStr())+")");
             }
-            bookNameStr.setText(mListview.getBookName());
+            else{
+                bookNameStr.setText(mListview.getBookName());
+            }
             sellerStr.setText(mListview.getSeller());
         }
-
         return view;
     }
-
 
     public void addData(ListViewItem bookList){
         mList.add(bookList);
     }
-
 }

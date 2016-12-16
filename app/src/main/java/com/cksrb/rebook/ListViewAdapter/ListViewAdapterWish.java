@@ -1,6 +1,8 @@
 package com.cksrb.rebook.ListViewAdapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +13,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cksrb.rebook.DataForm.BookData;
+import com.cksrb.rebook.DownLoadImageTask;
 import com.cksrb.rebook.ListViewItem;
 import com.cksrb.rebook.R;
 import com.cksrb.rebook.ReBookApplication;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +37,8 @@ public class ListViewAdapterWish extends BaseAdapter {
     private ImageView bookCoverIcon;
     private TextView bookNameStr;
     private TextView sellerStr;
+
+    private Bitmap bitmap;
 
     private Button wishBuyBtn;
     private Button wishCancelBtn;
@@ -94,9 +102,7 @@ public class ListViewAdapterWish extends BaseAdapter {
         mListview = (ListViewItem) getItem(position);
 
         if(mListview != null){
-            if(mListview.getBookCoverDrawable() != null){
-                bookCoverIcon.setImageDrawable(mListview.getBookCoverDrawable());
-            }
+            //new DownLoadImageTask(bookCoverIcon).execute(mListview.getBookCoverUrl());
 
             String bookName=null,sellerId=null;
             List<BookData> bookList = null;
