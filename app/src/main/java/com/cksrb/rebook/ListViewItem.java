@@ -31,8 +31,8 @@ public class ListViewItem{
     private String classStr;
     private String etcStr;
 
-    public ListViewItem(Drawable bookCover, String bookName, String seller,String sellerId,String isbn,int type) {
-        bookCoverDrawable = bookCover;
+    public ListViewItem(String bookCover, String bookName, String seller,String sellerId,String isbn,int type) {
+        bookCoverUrl = bookCover;
         bookNameStr = bookName;
         sellerStr = seller;
         this.sellerId=sellerId;
@@ -71,9 +71,6 @@ public class ListViewItem{
         this.userId = userId;
     }
 
-    public Drawable getBookCoverDrawable(){
-        return this.bookCoverDrawable;
-    }
     public String getBookCoverUrl() { return bookCoverUrl; }
 
     public String getBookName(){

@@ -87,6 +87,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
+        app:backgroundTint="@color/colorTitle"
+        android:tint="@android:color/white"
+        app:borderWidth="0dp"
         app:srcCompat="@android:drawable/ic_input_add" />
 
 </android.support.design.widget.CoordinatorLayout>

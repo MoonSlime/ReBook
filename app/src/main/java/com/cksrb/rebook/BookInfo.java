@@ -153,7 +153,7 @@ public class BookInfo extends AppCompatActivity {
         }
 
          if(check){
-            WishData wishData = new WishData(app.getUserId(),isbn,sellerId,type);
+            WishData wishData = new WishData(app.getUserId(),isbn,sellerId,type,bookcover);// duggy
             app.databaseReference.child("WishList").child(app.getUserId()+"|"+isbn).setValue(wishData);
             Toast.makeText(getApplicationContext(),"장바구니에 추가되었습니다.",Toast.LENGTH_SHORT).show();
             finish();

@@ -9,16 +9,18 @@ public class WishData {
     private String sellerId;
     private String userId;
     private int type;
+    private String bookCoverStr;
 
     public WishData(){
 
     }
 
-    public WishData(String userId,String isbn,String sellerId,int type){
+    public WishData(String userId,String isbn,String sellerId,int type,String bookcover){
         this.userId=userId;
         this.isbn=isbn;
         this.type=type;
         this.sellerId=sellerId;
+        bookCoverStr=bookcover;
     }
 
     public String getUserId() {
@@ -36,4 +38,6 @@ public class WishData {
     public String getSellerId() {
         return sellerId;
     }
+
+    public String getBookCover(){ return bookCoverStr; }
 }

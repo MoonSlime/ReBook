@@ -109,7 +109,7 @@ public class ListViewAdapterDeal extends BaseAdapter{
         mListview = (ListViewItem) getItem(position);
 
         if(mListview != null){
-            //new DownLoadImageTask(bookCoverIcon).execute(mListview.getBookCoverUrl());
+            new DownLoadImageTask(bookCoverIcon).execute(mListview.getBookCoverUrl());
 
             bookNameStr.setText(mListview.getBookName());
             sellerStr.setText(mListview.getSeller());

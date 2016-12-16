@@ -38,8 +38,6 @@ public class ListViewAdapterWish extends BaseAdapter {
     private TextView bookNameStr;
     private TextView sellerStr;
 
-    private Bitmap bitmap;
-
     private Button wishBuyBtn;
     private Button wishCancelBtn;
 
@@ -102,7 +100,7 @@ public class ListViewAdapterWish extends BaseAdapter {
         mListview = (ListViewItem) getItem(position);
 
         if(mListview != null){
-            //new DownLoadImageTask(bookCoverIcon).execute(mListview.getBookCoverUrl());
+            new DownLoadImageTask(bookCoverIcon).execute(mListview.getBookCoverUrl());
 
             String bookName=null,sellerId=null;
             List<BookData> bookList = null;
