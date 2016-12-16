@@ -122,7 +122,7 @@ public class UniFragment extends Fragment implements SwipeRefreshLayout.OnRefres
             for (; i > 0; --i) {
 
                if (bookDataList.get(i - 1).search(search)&&bookDataList.get(i-1).getCustomerId()==null) {
-                    ListViewItem u1 = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_gallery), bookDataList.get(i - 1).getTitle()
+                     ListViewItem u1 = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_gallery), bookDataList.get(i - 1).getTitle()
                             , bookDataList.get(i - 1).getAuthor(), bookDataList.get(i - 1).getSellerId(), bookDataList.get(i - 1).getIsbn(),UNI
                             ,bookDataList.get(i-1).getPublisher(), bookDataList.get(i-1).getPrice(), bookDataList.get(i-1).getSellPrice(), bookDataList.get(i-1).getProfessor(), bookDataList.get(i-1).getEtc());
                    adapter.addData(u1); // add list data

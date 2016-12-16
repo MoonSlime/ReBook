@@ -8,6 +8,8 @@ import android.graphics.drawable.Drawable;
 
 public class ListViewItem{
     private Drawable bookCoverDrawable;
+
+    private Drawable bookCoverUrl;
     private String sellerStr;
     private String bookNameStr;
 
@@ -23,8 +25,8 @@ public class ListViewItem{
     private String classStr;
     private String etcStr;
 
-    public ListViewItem(Drawable bookcover, String bookName, String seller,String sellerId,String isbn,int type) {
-        bookCoverDrawable = bookcover;
+    public ListViewItem(Drawable bookCover, String bookName, String seller,String sellerId,String isbn,int type) {
+        bookCoverDrawable = bookCover;
         bookNameStr = bookName;
         sellerStr = seller;
         this.sellerId=sellerId;
@@ -66,6 +68,7 @@ public class ListViewItem{
     public Drawable getBookCoverDrawable(){
         return this.bookCoverDrawable;
     }
+
     public String getBookName(){
         return this.bookNameStr;
     }

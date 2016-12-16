@@ -70,7 +70,7 @@ public class DealFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                                 , bookDataList.get(i - 1).getSellerId(), bookDataList.get(i - 1).getIsbn(), bookDataList.get(i - 1).getType());
                     } else {
                         u = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_manage),
-                                bookDataList.get(i - 1).getTitle(), "구매자 : 없음"
+                                  bookDataList.get(i - 1).getTitle(), "구매자 : 없음"
                                 , bookDataList.get(i - 1).getSellerId()
                                 , bookDataList.get(i - 1).getIsbn()
                                 , bookDataList.get(i - 1).getType());
