@@ -52,6 +52,9 @@
         <activity
             android:name=".BookInfoUni"
             android:screenOrientation="portrait" />
+        <activity android:name=".NavActivity.InfoActivity" />
+        <activity android:name=".NavActivity.NoticeActivity" />
+        <activity android:name=".NavActivity.DeveloperActivity"></activity>
     </application>
 
 </manifest>

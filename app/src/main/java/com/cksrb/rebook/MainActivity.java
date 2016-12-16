@@ -1,5 +1,6 @@
 package com.cksrb.rebook;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -10,11 +11,16 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.TextView;
 
 import com.cksrb.rebook.Fragment.DealFragment;
 import com.cksrb.rebook.Fragment.NormalFragment;
 import com.cksrb.rebook.Fragment.UniFragment;
 import com.cksrb.rebook.Fragment.WishFragment;
+import com.cksrb.rebook.NavActivity.DeveloperActivity;
+import com.cksrb.rebook.NavActivity.InfoActivity;
+import com.cksrb.rebook.NavActivity.NoticeActivity;
 
 
 public class MainActivity extends AppCompatActivity{
