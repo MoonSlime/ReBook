@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="#f55"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
+                app:popupTheme="@style/AppTheme.AppBarOverlay" />
 
         </android.support.design.widget.AppBarLayout>
 
@@ -36,7 +36,8 @@
             <android.support.design.widget.TabLayout
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                style="@style/MyCustomTabLayout"/>
 
         </android.support.design.widget.AppBarLayout>
 
