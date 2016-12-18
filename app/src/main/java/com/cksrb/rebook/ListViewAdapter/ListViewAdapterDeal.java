@@ -3,8 +3,6 @@ package com.cksrb.rebook.ListViewAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +19,6 @@ import com.cksrb.rebook.ListViewItem;
 import com.cksrb.rebook.R;
 import com.cksrb.rebook.ReBookApplication;
 
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -155,6 +150,7 @@ public class ListViewAdapterDeal extends BaseAdapter{
             }
         }
         else othersId=mListview.getSellerId();
+
 
         if(othersId!=null) {
             Intent intent = new Intent(mContext, ChatActivity.class);
