@@ -2,6 +2,7 @@ package com.cksrb.rebook.ListViewAdapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,6 +84,8 @@ public class ListViewAdapterDeal extends BaseAdapter{
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                cancel_sell();
+                Toast.makeText(mContext,"거래가 완료되었습니다.",Toast.LENGTH_SHORT).show();
                 // 거래완료
             }
         });
@@ -93,6 +96,7 @@ public class ListViewAdapterDeal extends BaseAdapter{
             public void onClick(View view) {
                 if(btnCancel.getText().equals("판매 취소")){
                     cancel_sell();
+                    Toast.makeText(mContext,"판매를 취소하였습니다.",Toast.LENGTH_SHORT).show();
                 }
                 else{
                     onClick_cancel();
@@ -101,6 +105,7 @@ public class ListViewAdapterDeal extends BaseAdapter{
         });
 
         mListview = (ListViewItem) getItem(position);
+        Log.d("andoirddebug","position  = "+position);
 
         if(mListview != null){
             if(mListview.getBookCoverDrawable() != null){
@@ -157,6 +162,7 @@ public class ListViewAdapterDeal extends BaseAdapter{
     }
 
     public void cancel_sell(){
+
         List<BookData> bookDataList=null;
         String type=null;
         if(mListview.getType()==1) {
@@ -168,10 +174,9 @@ public class ListViewAdapterDeal extends BaseAdapter{
             bookDataList = app.getBookList_normal();
         }
 
+        Log.d("androiddebug","ISBN=  "+mListview.getIsbn());
         app.databaseReference.child("BookList").child(type)
                 .child(mListview.getSellerId()+"|"+mListview.getIsbn()).setValue(null);
-
-        Toast.makeText(mContext,"판매를 취소하였습니다.",Toast.LENGTH_SHORT).show();
     }
 
 
