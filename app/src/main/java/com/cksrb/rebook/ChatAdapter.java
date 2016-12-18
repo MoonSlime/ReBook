@@ -1,7 +1,6 @@
 package com.cksrb.rebook;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,7 @@ import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder>{
     private List<ChatData> chatDataList;
-    public int position;
+   // public int position;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView userId,message;
@@ -39,24 +38,24 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder>{
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView=null;
 
-        if(chatDataList.get(position).getCheck()==1) {
+       // if(chatDataList.get(position).getCheck()==1) {
            itemView = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.chat_out, parent, false);
-        }
-        else if(chatDataList.get(position).getCheck()==2){
-            itemView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.chat_in, parent, false);
-        }
-        else{
-            Log.d("debugdebug","망함");
-        }
+        //}
+        //else if(chatDataList.get(position).getCheck()==2){
+         //   itemView = LayoutInflater.from(parent.getContext())
+          //          .inflate(R.layout.chat_in, parent, false);
+        //}
+        //else{
+         //   Log.d("debugdebug","망함");
+       // }
 
         return new MyViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        this.position = position;
+        //this.position = position;
         ChatData chatData = chatDataList.get(position);
         holder.userId.setText(chatData.getFrom());
         holder.message.setText(chatData.getMessage());
