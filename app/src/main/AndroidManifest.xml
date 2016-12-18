@@ -18,10 +18,14 @@
         android:theme="@style/AppTheme.NoActionBar">
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity android:name=".ChatActivity" />
+        <activity
+            android:name=".ChatActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".LoginActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,19 +35,26 @@
         </activity>
         <activity
             android:name=".RegisterBookActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".SignUpActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".BookInfo"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".RegisterBookActivityUni"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-
-        <activity android:name=".BookInfoUni"></activity>
-
+        <activity
+            android:name=".BookInfoUni"
+            android:screenOrientation="portrait" />
+        <activity android:name=".NavActivity.InfoActivity" />
+        <activity android:name=".NavActivity.NoticeActivity" />
+        <activity android:name=".NavActivity.DeveloperActivity"></activity>
     </application>
 
 </manifest>

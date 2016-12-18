@@ -47,6 +47,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:text="책 이름"
+                android:gravity="center_vertical"
                 android:singleLine="true"
                 android:ellipsize="marquee"
                 android:padding="5dp"/>
@@ -56,6 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:gravity="center_vertical"
                 android:text="출판사"
                 android:padding="5dp"/>
 
@@ -65,24 +67,39 @@
                 android:layout_weight="1">
 
                 <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:text="정가"
+                    android:gravity="center"/>
+
+                <TextView
                     android:id="@+id/textView_price_uni"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="4"
                     android:text="정가"
-                    android:padding="5dp"/>
+                    android:gravity="center_vertical|right"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="원"/>
+                    android:text="원"
+                    android:gravity="center"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:text="판매가"
+                    android:gravity="center"/>
 
                 <EditText
                     android:id="@+id/editTExt_sellPrice_uni"
@@ -91,13 +108,14 @@
                     android:layout_weight="4"
                     android:hint="판매가"
                     android:digits="1234567890"
-                    android:padding="5dp"/>
+                    android:gravity="center_vertical|right"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="원"/>
+                    android:text="원"
+                    android:gravity="center"/>
             </LinearLayout>
 
             <EditText

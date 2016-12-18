@@ -59,9 +59,9 @@ public class WishFragment extends Fragment implements SwipeRefreshLayout.OnRefre
             int i=wishDataList.size();
             for(;i>0;--i){
                 if(wishDataList.get(i-1).getUserId().equals(app.getUserId())){
-                    ListViewItem u = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_gallery),
+                    ListViewItem u = new ListViewItem(wishDataList.get(i-1).getBookCover(),
                             "title=no","author=no",wishDataList.get(i-1).getSellerId()
-                            ,wishDataList.get(i-1).getIsbn(),wishDataList.get(i-1).getType());
+                            ,wishDataList.get(i-1).getIsbn(),wishDataList.get(i-1).getType()); // ????
                     adapter.addData(u);
                 }
             }
@@ -70,12 +70,6 @@ public class WishFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
         booklist.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-
-/*
-        ListViewItem u1 = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_send),
-                "나는 장바구니", "살거냣","","",2);
-        adapter.addData(u1); // add list data
-        */
     }
 
     @Override

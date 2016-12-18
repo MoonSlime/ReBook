@@ -1,7 +1,13 @@
 package com.cksrb.rebook;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +17,11 @@ import android.widget.Toast;
 
 import com.cksrb.rebook.DataForm.WishData;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
 
 public class BookInfo extends AppCompatActivity {
@@ -39,6 +50,9 @@ public class BookInfo extends AppCompatActivity {
     private static int UNI = 1;
     private static int NORMAL = 0;
 
+    private Bitmap bitmap;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,8 +66,27 @@ public class BookInfo extends AppCompatActivity {
         sellerId = intent.getStringExtra("sellerId");
         type = intent.getIntExtra("type",1);
 
-        bookcoverInfo = (ImageView)findViewById(R.id.imageInfo);
-       // bookcoverInfo.setImageDrawable();
+        bookcover = intent.getStringExtra("url");
+        bookcoverInfo = (ImageView)findViewById(R.id.imageInfo); // have to modify
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    bitmap = getBitmap(bookcover);
+                }catch (Exception e){
+
+                }finally {
+                    if(bitmap != null){
+                        runOnUiThread(new Runnable() {
+                            @SuppressLint("NewApi")
+                            public void run() {
+                                bookcoverInfo.setImageBitmap(bitmap);
+                            }
+                        });
+                    }
+                }
+            }
+        }).start();
 
         title=intent.getStringExtra("title");
         titleInfo = (TextView)findViewById(R.id.titleInfo);
@@ -120,12 +153,37 @@ public class BookInfo extends AppCompatActivity {
         }
 
          if(check){
-            WishData wishData = new WishData(app.getUserId(),isbn,sellerId,type);
+            WishData wishData = new WishData(app.getUserId(),isbn,sellerId,type,bookcover);// duggy
             app.databaseReference.child("WishList").child(app.getUserId()+"|"+isbn).setValue(wishData);
             Toast.makeText(getApplicationContext(),"장바구니에 추가되었습니다.",Toast.LENGTH_SHORT).show();
             finish();
         }
         else Toast.makeText(getApplicationContext(),"장바구니에 추가할수없습니다.",Toast.LENGTH_SHORT).show();
 
+    }
+
+    public Bitmap getBitmap(String url) {
+        URL imgUrl = null;
+        HttpURLConnection connection = null;
+        InputStream is = null;
+
+        Bitmap retBitmap = null;
+
+        try {
+            imgUrl = new URL(url);
+            connection = (HttpURLConnection) imgUrl.openConnection();
+            connection.setDoInput(true); //url로 input받는 flag 허용
+            connection.connect(); //연결
+            is = connection.getInputStream(); // get inputstream
+            retBitmap = BitmapFactory.decodeStream(is);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (connection != null) {
+                connection.disconnect();
+            }
+            return retBitmap;
+        }
     }
 }

@@ -79,6 +79,7 @@ public class NormalFragment extends Fragment implements SwipeRefreshLayout.OnRef
                 intent.putExtra("price",((ListViewItem) adapter.getItem(position)).getPriceInt());
                 intent.putExtra("sellerPrice",((ListViewItem) adapter.getItem(position)).getSellerPriceStr());
                 intent.putExtra("etc", ((ListViewItem) adapter.getItem(position)).getEtcStr());
+                intent.putExtra("url",((ListViewItem) adapter.getItem(position)).getBookCoverUrl());
                 startActivity(intent);
             }
         }; // when click list, open new activity(book info)
@@ -105,7 +106,7 @@ public class NormalFragment extends Fragment implements SwipeRefreshLayout.OnRef
             for (; i > 0; --i) {
 
                 if (bookDataList.get(i - 1).search(search)&&bookDataList.get(i-1).getCustomerId()==null) {
-                    ListViewItem u1 = new ListViewItem(getResources().getDrawable(R.drawable.ic_menu_gallery), bookDataList.get(i - 1).getTitle()
+                    ListViewItem u1 = new ListViewItem(bookDataList.get(i-1).getImage_url(), bookDataList.get(i - 1).getTitle()
                             , bookDataList.get(i - 1).getAuthor(), bookDataList.get(i - 1).getSellerId(), bookDataList.get(i - 1).getIsbn(),NORMAL
                     ,bookDataList.get(i-1).getPublisher(), bookDataList.get(i-1).getPrice(), bookDataList.get(i-1).getSellPrice(), bookDataList.get(i-1).getEtc());
                     adapter.addData(u1); // add list data
