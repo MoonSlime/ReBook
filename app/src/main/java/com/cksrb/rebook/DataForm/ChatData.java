@@ -9,6 +9,7 @@ public class ChatData {
     private String from;
     private String to;
     private String message;
+    private int check;
 
     public ChatData() { }
 
@@ -19,6 +20,14 @@ public class ChatData {
 
         if(from.compareTo(to)>0)cmpstr=to+"|"+from;
         else cmpstr=from+"|"+to;
+    }
+
+    public void setCheck(int check) {
+        this.check = check;
+    }
+
+    public int getCheck() {
+        return check;
     }
 
     public String getFrom() {
