@@ -100,8 +100,6 @@ public class ListViewAdapterWish extends BaseAdapter {
         mListview = (ListViewItem) getItem(position);
 
         if(mListview != null){
-            new DownLoadImageTask(bookCoverIcon).execute(mListview.getBookCoverUrl());
-
             String bookName=null,sellerId=null;
             List<BookData> bookList = null;
             if(mListview.getType()==UNI){
@@ -115,6 +113,8 @@ public class ListViewAdapterWish extends BaseAdapter {
             for(;i>0;--i){
                 if(bookList.get(i-1).getIsbn().equals(mListview.getIsbn())
                         &&bookList.get(i-1).getSellerId().equals(mListview.getSellerId())){
+                    new DownLoadImageTask(bookCoverIcon).execute(bookList.get(i-1).getImage_url());
+
                     bookName=bookList.get(i-1).getTitle();
                     sellerId=bookList.get(i-1).getSellerId();
                 }

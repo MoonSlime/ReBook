@@ -61,7 +61,7 @@ public class WishFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                 if(wishDataList.get(i-1).getUserId().equals(app.getUserId())){
                     ListViewItem u = new ListViewItem(wishDataList.get(i-1).getBookCover(),
                             "title=no","author=no",wishDataList.get(i-1).getSellerId()
-                            ,wishDataList.get(i-1).getIsbn(),wishDataList.get(i-1).getType()); // ????
+                            ,wishDataList.get(i-1).getIsbn(),wishDataList.get(i-1).getType());
                     adapter.addData(u);
                 }
             }
