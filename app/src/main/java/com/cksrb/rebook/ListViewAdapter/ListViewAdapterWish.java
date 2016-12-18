@@ -114,7 +114,7 @@ public class ListViewAdapterWish extends BaseAdapter {
                 if(bookList.get(i-1).getIsbn().equals(mListview.getIsbn())
                         &&bookList.get(i-1).getSellerId().equals(mListview.getSellerId())){
                     new DownLoadImageTask(bookCoverIcon).execute(bookList.get(i-1).getImage_url());
-                    
+
                     bookName=bookList.get(i-1).getTitle();
                     sellerId=bookList.get(i-1).getSellerId();
                 }
