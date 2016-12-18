@@ -25,6 +25,10 @@ public class ReBookApplication extends Application {
     public DatabaseReference databaseReference ;//= firebaseDatabase.getReference();
 
     private String userId;
+    private String userName;
+    private String userPhone;
+    private String userPassword;
+
     private List<USER> userList = new ArrayList<>();
     private List<BookData> bookList = new ArrayList<>();
     private List<BookData> bookList_normal = new ArrayList<>();
@@ -45,9 +49,21 @@ public class ReBookApplication extends Application {
         this.userId=userId;
     }
 
+    public void setUserName(String userName) { this.userName = userName; }
+
+    public void setUserPhone(String userPhone) { this.userPhone = userPhone; }
+
+    public void setUserPassword(String userPassword){this.userPassword = userPassword;}
+
     public String getUserId(){
         return userId;
     }
+
+    public String getUserName(){ return userName; }
+
+    public String getUserPhone(){return userPhone;}
+
+    public String getUserPassword(){return userPassword;}
 
     public List<USER> getUserList() {
         return userList;

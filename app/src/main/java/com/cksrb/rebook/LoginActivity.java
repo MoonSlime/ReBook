@@ -25,6 +25,11 @@ public class LoginActivity extends AppCompatActivity {
     private Button login_Button;
     private Button signup_Button;
 
+    private String userName;
+    private String userId;
+    private String userPhone;
+    private String userPassword;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +48,10 @@ public class LoginActivity extends AppCompatActivity {
                 if (attemptLogin(login_Id.getText().toString(), login_Password.getText().toString())) {
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     //Intent intent = new Intent(getApplicationContext(),RegisterBookActivity.class);
+                    intent.putExtra("userName",userName);
+                    intent.putExtra("userId",userId);
+                    intent.putExtra("userPassword",userPassword);
+                    intent.putExtra("userPhone",userPhone);
                     startActivity(intent);
                     finish();
                 }
@@ -65,6 +74,15 @@ public class LoginActivity extends AppCompatActivity {
         for (; i > 0; --i) {
             if (userList.get(i-1).equals(new USER(id, password))) {
                 app.setUserId(userList.get(i-1).getId());
+                app.setUserName(userList.get(i-1).getName());
+                app.setUserPassword(userList.get(i-1).getPassword());
+                app.setUserPhone(userList.get(i-1).getPhone());
+
+                userName = app.getUserName();
+                userId = app.getUserId();
+                userPassword = app.getUserPassword();
+                userPhone = app.getUserPhone();
+                // duggy
                 return true;
             }
         }

@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cksrb.rebook.DataForm.USER;
 import com.cksrb.rebook.Fragment.DealFragment;
 import com.cksrb.rebook.Fragment.NormalFragment;
 import com.cksrb.rebook.Fragment.UniFragment;
@@ -31,7 +32,13 @@ import com.cksrb.rebook.NavActivity.NoticeActivity;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
      private SectionsPagerAdapter mSectionsPagerAdapter;
     private Toolbar toolbar;
-    private NavigationView navigationView;
+
+    private String nameInfo;
+    private String idInfo;
+    private String phoneInfo;
+    private String passwordInfo;
+
+    private Intent intent;
 
     private ViewPager mViewPager;
 
@@ -59,6 +66,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View headerNav = navigationView.getHeaderView(0);
+
+        intent = getIntent();
+        TextView userName = (TextView) headerNav.findViewById(R.id.userNameNav);
+        nameInfo = intent.getStringExtra("userName");
+        userName.setText("Name : "+nameInfo);
+        TextView userId = (TextView) headerNav.findViewById(R.id.userIdNav);
+        idInfo = intent.getStringExtra("userId");
+        userId.setText("ID : "+idInfo);
+
+        phoneInfo = intent.getStringExtra("userPhone");
+        passwordInfo = intent.getStringExtra("userPassword");
     }
 
     @Override
@@ -67,13 +86,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         switch (position){
             case R.id.userInfoNav:
-                Toast.makeText(getApplicationContext(),"info",Toast.LENGTH_SHORT).show();
+                Intent intentNav = new Intent(getApplicationContext(), InfoActivity.class);
+                intentNav.putExtra("name",nameInfo);
+                intentNav.putExtra("id",idInfo);
+                intentNav.putExtra("phone",phoneInfo);
+                intentNav.putExtra("password",passwordInfo);
+                startActivity(intentNav);
                 break;
             case R.id.noticeNav:
-                Toast.makeText(getApplicationContext(),"notice",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), NoticeActivity.class));
                 break;
             case R.id.developerNav:
-                Toast.makeText(getApplicationContext(),"developer",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), DeveloperActivity.class));
                 break;
         }
 
