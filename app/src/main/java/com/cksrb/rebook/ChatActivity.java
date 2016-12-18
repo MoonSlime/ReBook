@@ -87,6 +87,12 @@ public class ChatActivity extends AppCompatActivity {
                     if (cAdapter.getItemCount() == 50) {
                         chatDataList.remove(0);
                     }
+                    if(chatData.getFrom()==app.getUserId()){
+                        chatData.setCheck(1);
+                    }
+                    else{
+                        chatData.setCheck(2);
+                    }
                     chatDataList.add(chatData);
                     cAdapter.notifyDataSetChanged();
                 }
